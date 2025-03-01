@@ -114,7 +114,7 @@ function HeroGeometric({
                     width={500}
                     height={120}
                     rotate={-15}
-                    gradient="from-indigo-500/[0.15]"
+                    gradient="from-[#db0500]/[0.15]"
                     className="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
                 />
 
@@ -132,7 +132,7 @@ function HeroGeometric({
                     width={200}
                     height={60}
                     rotate={20}
-                    gradient="from-indigo-500/[0.15]"
+                    gradient="from-[#db0500]/[0.15]"
                     className="right-[15%] md:right-[20%] top-[10%] md:top-[15%]"
                 />
 
@@ -174,7 +174,7 @@ function HeroGeometric({
                             <br />
                             <span
                                 className={cn(
-                                    "bg-clip-text text-transparent bg-gradient-to-r from-[#db0500] via-white/90 to-indigo-300 "
+                                    "bg-clip-text text-transparent bg-gradient-to-r from-[#db0500] via-[#ff3333] to-[#ff6666] "
                                 )}
                             >
                                 {title2}

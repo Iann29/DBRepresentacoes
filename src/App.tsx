@@ -4,6 +4,7 @@ import CompanyPresentation from './components/CompanyPresentation';
 import Differentials from './components/Differentials';
 import TeamPresentation from './components/TeamPresentation';
 import RepresentedCompanies from './components/RepresentedCompanies';
+import CompanyHistory from './components/CompanyHistory';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import { ArrowUp } from 'lucide-react';
@@ -39,6 +40,7 @@ function App() {
         <Differentials />
         <TeamPresentation />
         <RepresentedCompanies />
+        <CompanyHistory />
         <ContactForm />
       </main>
       <Footer />

@@ -1,173 +1,147 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Linkedin, Mail, Phone } from 'lucide-react';
 
 interface TeamMemberProps {
   image: string;
   name: string;
   position: string;
-  bio: string;
-  contact: {
-    email?: string;
-    phone?: string;
-    linkedin?: string;
-  };
+  region: string;
 }
 
-const TeamMember: React.FC<TeamMemberProps> = ({ image, name, position, bio, contact }) => {
+const TeamMember: React.FC<TeamMemberProps> = ({ image, name, position, region }) => {
   return (
     <motion.div
-      className="flex flex-col"
-      initial={{ opacity: 0, y: 50 }}
+      className="flex flex-col items-center"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.5 }}
     >
-      <div className="relative group overflow-hidden rounded-xl">
-        {/* Imagem principal */}
-        <div className="aspect-[3/4] overflow-hidden">
-          <motion.img
-            src={image}
-            alt={name}
-            className="w-full h-full object-cover"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.4 }}
-          />
-        </div>
-
-        {/* Camada de informações */}
+      <motion.div 
+        className="relative mb-12 group"
+        whileHover={{ 
+          scale: 1.05, 
+          rotate: 2,
+          transition: { duration: 0.3 }
+        }}
+      >
+        {/* Imagem com borda personalizada */}
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
+          className="relative rounded-lg overflow-hidden border-4 border-white shadow-lg"
+          whileHover={{ 
+            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+          }}
         >
-          <h3 className="text-xl font-bold">{name}</h3>
-          <p className="text-white/90 font-medium mb-2">{position}</p>
-          
-          <div className="flex space-x-3 mt-3">
-            {contact.email && (
-              <motion.a 
-                href={`mailto:${contact.email}`}
-                className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Mail size={18} className="text-white" />
-              </motion.a>
-            )}
-            {contact.phone && (
-              <motion.a 
-                href={`tel:${contact.phone}`}
-                className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Phone size={18} className="text-white" />
-              </motion.a>
-            )}
-            {contact.linkedin && (
-              <motion.a 
-                href={contact.linkedin}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Linkedin size={18} className="text-white" />
-              </motion.a>
-            )}
+          <div className="aspect-square w-64 h-64 overflow-hidden">
+            <img
+              src={image}
+              alt={name}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            />
           </div>
+          
+          {/* Borda decorativa no lado esquerdo - usando cor principal do site */}
+          <div className="absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-[#db0500] to-[#aa0400]"></div>
+          
+          {/* Efeito flash na borda em hover */}
+          <motion.div 
+            className="absolute inset-0 border-4 border-[#db0500]/0"
+            initial={{ opacity: 0 }}
+            whileHover={{ 
+              opacity: 1, 
+              borderColor: "rgba(219, 5, 0, 0.3)",
+              transition: { duration: 0.3 }
+            }}
+          />
         </motion.div>
-      </div>
+      </motion.div>
       
-      {/* Informações abaixo da imagem */}
-      <div className="p-4">
-        <h3 className="text-xl font-bold text-gray-900">{name}</h3>
-        <p className="text-gradient font-medium mb-3">{position}</p>
-        <p className="text-gray-600 text-sm line-clamp-3">{bio}</p>
-      </div>
+      {/* Informações do membro */}
+      <h3 className="text-xl font-bold text-gray-800 text-center">{name}</h3>
+      <p className="text-gray-600 font-medium text-center">{position}</p>
+      <p className="text-[#db0500] text-sm text-center mt-1">{region}</p>
     </motion.div>
   );
 };
 
 const TeamPresentation = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
   const teamMembers = [
     {
       image: "/equipe/equipe1.jpg",
       name: "Daniel Barbosa",
-      position: "Diretor Comercial",
-      bio: "Com mais de 15 anos de experiência no setor, Daniel lidera nossa equipe de vendas e desenvolve estratégias para fortalecer as parcerias com nossos clientes e representados.",
-      contact: {
-        email: "daniel@dbrepresentacoes.com.br",
-        phone: "+55 (11) 98765-4321",
-        linkedin: "https://linkedin.com/in/danielbarbosa"
-      }
+      position: "Diretor",
+      region: ""
     },
     {
       image: "/equipe/equipe2.jpg",
-      name: "Ana Carolina Silva",
-      position: "Gerente de Relacionamento",
-      bio: "Ana é responsável por manter o relacionamento sólido com nossos clientes, garantindo excelência no atendimento e identificando oportunidades para ampliação de negócios.",
-      contact: {
-        email: "ana@dbrepresentacoes.com.br",
-        phone: "+55 (11) 98765-4322",
-        linkedin: "https://linkedin.com/in/anacarolinasilva"
-      }
+      name: "Ciro Teixeira",
+      position: "Representante Comercial",
+      region: "Tapejara"
     },
     {
       image: "/equipe/equipe1.jpg",
-      name: "Ricardo Almeida",
-      position: "Especialista em Desenvolvimento de Negócios",
-      bio: "Ricardo identifica oportunidades de mercado e desenvolve estratégias para expansão. Com experiência em análise de mercado e planejamento estratégico.",
-      contact: {
-        email: "ricardo@dbrepresentacoes.com.br",
-        phone: "+55 (11) 98765-4323",
-        linkedin: "https://linkedin.com/in/ricardoalmeida"
-      }
+      name: "João Lucas Figueiredo",
+      position: "Representante Comercial",
+      region: "Tapejara"
     },
     {
       image: "/equipe/equipe2.jpg",
-      name: "Juliana Santos",
-      position: "Coordenadora de Marketing",
-      bio: "Juliana lidera nossas estratégias de marketing e comunicação. Especialista em marketing digital e branding para aumentar a visibilidade das marcas.",
-      contact: {
-        email: "juliana@dbrepresentacoes.com.br",
-        phone: "+55 (11) 98765-4324",
-        linkedin: "https://linkedin.com/in/julianasantos"
-      }
+      name: "Maurício Borges",
+      position: "Representante Comercial",
+      region: "Tapejara"
     }
   ];
 
   return (
-    <section id="equipe" ref={sectionRef} className="py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+    <section id="equipe" className="py-32 relative overflow-hidden bg-white">
+      {/* Background geométrico criativo */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        {/* Padrão de fundo - apenas o grid */}
+        <svg 
+          className="absolute top-0 left-0 w-full h-full opacity-10" 
+          width="100%" 
+          height="100%" 
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            Nossa <span className="text-gradient">Equipe</span>
+          <pattern 
+            id="grid-pattern" 
+            x="0" 
+            y="0" 
+            width="40" 
+            height="40" 
+            patternUnits="userSpaceOnUse"
+          >
+            <rect x="0" y="0" width="40" height="40" fill="none" stroke="#db0500" strokeWidth="1" />
+          </pattern>
+          <rect x="0" y="0" width="100%" height="100%" fill="url(#grid-pattern)" />
+        </svg>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Título da seção */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 text-gray-900">
+            Nossa <span className="text-[#db0500]">Equipe</span>
           </h2>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Conheça os profissionais dedicados que trabalham para o sucesso dos nossos parceiros.
+          <p className="text-gray-600 max-w-3xl mx-auto">
+            O diferencial da nossa empresa está nas pessoas! Conheça a equipe de suporte da DB Representações.
           </p>
-        </motion.div>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-4">
+        {/* Linha decorativa abaixo do título */}
+        <div className="flex justify-center mb-12">
+          <div className="w-24 h-1 bg-[#db0500]"></div>
+        </div>
+        
+        {/* Grid de membros da equipe */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 justify-items-center max-w-6xl mx-auto mb-24">
           {teamMembers.map((member, index) => (
             <TeamMember
               key={index}
               image={member.image}
               name={member.name}
               position={member.position}
-              bio={member.bio}
-              contact={member.contact}
+              region={member.region}
             />
           ))}
         </div>
