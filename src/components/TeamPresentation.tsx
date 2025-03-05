@@ -88,7 +88,10 @@ const TeamCard: React.FC<TeamMemberProps & { onClick: () => void, index: number 
               <img 
                 src={image} 
                 alt={name} 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
+                style={{
+                  filter: "brightness(1.05) contrast(1.05)"
+                }}
               />
               
               {/* Efeito de brilho no hover */}
@@ -101,7 +104,7 @@ const TeamCard: React.FC<TeamMemberProps & { onClick: () => void, index: number 
             
             {/* Badge para o líder */}
             {isLeader && (
-              <div className="absolute -right-2 bottom-0 bg-[#db0500] text-white text-xs font-bold px-2 py-1 rounded-full shadow-md transform -rotate-12">
+              <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 bg-[#db0500] text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
                 Diretor
               </div>
             )}
@@ -196,7 +199,10 @@ const TeamMemberModal: React.FC<TeamMemberProps & { onClose: () => void }> = ({
           <img 
             src={image} 
             alt={name} 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
+            style={{
+              filter: "brightness(1.05) contrast(1.05)"
+            }}
           />
         </div>
         
