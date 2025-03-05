@@ -4,6 +4,7 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Circle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useWindowScale, scaleAdjust } from "@/lib/useWindowScale";
 
 function ElegantShape({
     className,
@@ -20,6 +21,10 @@ function ElegantShape({
     rotate?: number;
     gradient?: string;
 }) {
+    const { scale } = useWindowScale();
+    const adjustedWidth = typeof width === 'number' ? scaleAdjust(width, scale) : width;
+    const adjustedHeight = typeof height === 'number' ? scaleAdjust(height, scale) : height;
+
     return (
         <motion.div
             initial={{
@@ -50,8 +55,8 @@ function ElegantShape({
                     ease: "easeInOut",
                 }}
                 style={{
-                    width,
-                    height,
+                    width: adjustedWidth,
+                    height: adjustedHeight,
                 }}
                 className="relative"
             >
@@ -94,6 +99,8 @@ function HeroGeometric({
             },
         }),
     };
+
+    const { scale } = useWindowScale();
 
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#030303]">
@@ -221,26 +228,40 @@ function HeroGeometric({
                 </div>
             </div>
             
-            {/* Indicador de scroll */}
+            {/* Indicador de scroll com ajuste para escala do sistema */}
             <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5, duration: 1 }}
-                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+                className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 mt-16"
+                style={{ 
+                    marginTop: "3rem",
+                    transform: `translate(-50%, ${scale > 1 ? `${scaleAdjust(8, scale)}px` : '0px'})` 
+                }}
             >
                 <div className="flex flex-col items-center">
-                    <span className="text-sm text-white/60 mb-2">Scroll para descobrir</span>
-                    <div className="w-8 h-12 rounded-full border-2 border-white/30 flex items-start justify-center">
+                    <span className="text-xs sm:text-sm text-white/60 mb-2">Scroll para descobrir</span>
+                    <div 
+                        className="rounded-full border-2 border-white/30 flex items-start justify-center"
+                        style={{ 
+                            width: `${scaleAdjust(20, scale)}px`, 
+                            height: `${scaleAdjust(32, scale)}px`
+                        }}
+                    >
                         <motion.div 
                             animate={{ 
-                                y: [0, 10, 0],
+                                y: [0, scaleAdjust(8, scale), 0],
                             }}
                             transition={{
                                 duration: 1.5,
                                 repeat: Infinity,
                                 ease: "easeInOut"
                             }}
-                            className="w-1 h-3 bg-white rounded-full mt-2"
+                            className="bg-white rounded-full mt-2"
+                            style={{ 
+                                width: `${scaleAdjust(4, scale)}px`, 
+                                height: `${scaleAdjust(8, scale)}px` 
+                            }}
                         />
                     </div>
                 </div>
