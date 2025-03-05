@@ -8,6 +8,7 @@ import CompanyHistory from './components/CompanyHistory';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import { ArrowUp } from 'lucide-react';
+import { HeaderProvider } from './contexts/HeaderContext';
 
 function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -33,29 +34,31 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main>
-        <CompanyPresentation />
-        <Differentials />
-        <TeamPresentation />
-        <RepresentedCompanies />
-        <CompanyHistory />
-        <ContactForm />
-      </main>
-      <Footer />
-      
-      {/* Botão de voltar ao topo */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed right-6 bottom-6 bg-[#db0500] text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:bg-[#a00300] focus:outline-none ${
-          showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-        }`}
-        aria-label="Voltar ao topo"
-      >
-        <ArrowUp size={24} />
-      </button>
-    </div>
+    <HeaderProvider>
+      <div className="min-h-screen bg-white">
+        <Header />
+        <main>
+          <CompanyPresentation />
+          <Differentials />
+          <TeamPresentation />
+          <RepresentedCompanies />
+          <CompanyHistory />
+          <ContactForm />
+        </main>
+        <Footer />
+        
+        {/* Botão de voltar ao topo */}
+        <button
+          onClick={scrollToTop}
+          className={`fixed right-6 bottom-6 bg-[#db0500] text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:bg-[#a00300] focus:outline-none ${
+            showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+          }`}
+          aria-label="Voltar ao topo"
+        >
+          <ArrowUp size={24} />
+        </button>
+      </div>
+    </HeaderProvider>
   );
 }
 

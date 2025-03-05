@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Building } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { useHeader } from '../contexts/HeaderContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { isHeaderVisible } = useHeader();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,12 +20,20 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  if (!isHeaderVisible) {
+    return null;
+  }
+
   return (
     <header className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-lg py-2' : 'bg-black/20 backdrop-blur-sm py-4'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center group">
           <div className="relative">
-            <Building className="h-8 w-8 text-[#db0500] transition-transform duration-300 group-hover:scale-110" />
+            <img 
+              src="/logodb.webp" 
+              alt="DB Representações Logo" 
+              className="h-8 w-auto transition-transform duration-300 group-hover:scale-110" 
+            />
             <div className="absolute -inset-1 rounded-full bg-[#db0500]/10 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
           </div>
           <div className="ml-2 relative overflow-hidden">

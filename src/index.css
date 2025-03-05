@@ -200,3 +200,33 @@ h1, h2, h3, h4, h5, h6 {
 .text-shadow-lg {
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
 }
+
+/* Estilo quando o scroll hijacking está ativo - mantendo simples */
+.timeline-hijacked {
+  /* Usando uma sombra discreta apenas para destacar levemente */
+  box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 100;
+  transition: box-shadow 0.5s ease-out;
+}
+
+/* Removemos a sombra quando saímos do hijacking */
+body:not(.scroll-hijacking-active) .timeline-hijacked {
+  box-shadow: none !important;
+  transition: box-shadow 0.3s ease-out;
+}
+
+/* Removemos todos aqueles estilos desnecessários */
+[data-hijacking="inactive"] {
+  box-shadow: none !important;
+}
+
+/* Removendo os estilos do indicador e outros elementos */
+.timeline-scroll-indicator {
+  display: none;
+}
+
+/* Melhoria nos controles de timeline */
+.timeline-hijacked .fixed {
+  opacity: 1 !important;
+}
