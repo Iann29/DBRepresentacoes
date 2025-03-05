@@ -80,7 +80,7 @@ const TeamCard: React.FC<TeamMemberProps & { onClick: () => void, index: number 
           
           {/* Imagem principal - AUMENTADA */}
           <div className="absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className={`relative ${isLeader ? 'w-36 h-36' : 'w-32 h-32'} rounded-full overflow-hidden border-4 border-white shadow-lg`}
+            <div className={`relative ${isLeader ? 'w-44 h-44' : 'w-40 h-40'} rounded-full overflow-hidden border-4 border-white shadow-lg`}
               style={{ 
                 transform: 'translateZ(5px)',
                 boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)'
@@ -288,7 +288,7 @@ const TeamPresentation = () => {
     {
       image: "/equipe/equipe1.jpg",
       name: "Deoclecio Boff",
-      position: "Diretor",
+      position: "Representante Comercial",
       region: "",
       email: "deocleciob@deboff.com.br",
       phone: "(54) 99982-7120"
