@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import CompanyPresentation from './components/CompanyPresentation';
 import Differentials from './components/Differentials';
+import Divider from './components/Divider';
 import TeamPresentation from './components/TeamPresentation';
 import RepresentedCompanies from './components/RepresentedCompanies';
 import CompanyHistory from './components/CompanyHistory';
@@ -39,8 +40,11 @@ function App() {
         <Header />
         <main>
           <CompanyPresentation />
-          <Differentials />
-          <TeamPresentation />
+          <div className="relative">
+            <Differentials />
+            <Divider />
+            <TeamPresentation />
+          </div>
           <RepresentedCompanies />
           <CompanyHistory />
           <ContactForm />
