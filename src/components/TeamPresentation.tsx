@@ -286,7 +286,7 @@ const TeamPresentation = () => {
   // Dados dos membros da equipe
   const teamMembers = [
     {
-      image: "/equipe/equipe1.jpg",
+      image: "/equipe/deoclecioboff.webp",
       name: "Deoclecio Boff",
       position: "Representante Comercial",
       region: "",
@@ -294,7 +294,7 @@ const TeamPresentation = () => {
       phone: "(54) 99982-7120"
     },
     {
-      image: "/equipe/equipe2.jpg",
+      image: "/equipe/gabrielboff.webp",
       name: "Gabriel Boff",
       position: "Comercial",
       region: "",
@@ -302,7 +302,7 @@ const TeamPresentation = () => {
       phone: "(54) 99682-7120"
     },
     {
-      image: "/equipe/equipe1.jpg",
+      image: "/equipe/eduardobiazotto.webp",
       name: "Eduardo Biazotto",
       position: "Comercial",
       region: "",
@@ -310,7 +310,7 @@ const TeamPresentation = () => {
       phone: "(54) 99999-6666"
     },
     {
-      image: "/equipe/equipe2.jpg",
+      image: "/equipe/glauciascariot.webp",
       name: "Glaucia Scariot",
       position: "Comercial",
       region: "",
@@ -318,7 +318,7 @@ const TeamPresentation = () => {
       phone: "(54) 99999-5555"
     },
     {
-      image: "/equipe/equipe1.jpg",
+      image: "/equipe/deoclecioboff.webp", // Não encontrei imagem específica para Martha, usando placeholder
       name: "Martha Moraes",
       position: "Comercial",
       region: "",
@@ -326,7 +326,7 @@ const TeamPresentation = () => {
       phone: "(54) 99999-4444"
     },
     {
-      image: "/equipe/equipe2.jpg",
+      image: "/equipe/jenneffercruz.webp",
       name: "Jenneffer Cruz",
       position: "Consultora Comercial",
       region: "",
@@ -334,10 +334,10 @@ const TeamPresentation = () => {
       phone: "(54) 99996-7120"
     },
     {
-      image: "/equipe/equipe1.jpg",
+      image: "/equipe/deoclecioboff.webp", // Não encontrei imagem específica para Ademir, usando placeholder
       name: "Ademir Pagnussat",
-      position: "Representante Parceiro",
-      region: "Exclusivo Häfele",
+      position: "Representante Parceiro (Häfele)",
+      region: "",
       email: "ademir@dbrepresentacoes.com.br",
       phone: "(54) 99996-7538"
     }
