@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Mail, X } from 'lucide-react';
+import { Phone, Mail, X, ChevronRight } from 'lucide-react';
 
 interface TeamMemberProps {
   image: string;
@@ -12,76 +12,122 @@ interface TeamMemberProps {
   isLeader?: boolean;
 }
 
-const TeamMember: React.FC<TeamMemberProps & { onClick: () => void }> = ({ 
+// Componente de cartão com efeito 3D sutil
+const TeamCard: React.FC<TeamMemberProps & { onClick: () => void, index: number }> = ({ 
   image, 
   name, 
   position, 
   region, 
   isLeader = false,
-  onClick
+  onClick,
+  index
 }) => {
+  const [hover, setHover] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Efeito de rotação 3D baseado na posição do mouse
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    
+    setMousePosition({ x, y });
+  };
+
   return (
     <motion.div
-      className={`flex flex-col items-center ${isLeader ? 'mb-6' : 'mb-2'}`}
-      initial={{ opacity: 0, y: 20 }}
+      className="perspective"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <motion.div 
-        className="relative group mb-4 cursor-pointer perspective"
-        whileHover={{ 
-          scale: 1.05,
-          transition: { duration: 0.2 }
+        className="group cursor-pointer relative w-full h-full"
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        onMouseMove={handleMouseMove}
+        style={{ 
+          transform: hover ? `rotateY(${mousePosition.x * 7}deg) rotateX(${-mousePosition.y * 7}deg)` : 'rotateY(0) rotateX(0)',
+          transition: hover ? 'none' : 'transform 0.5s ease-out'
         }}
         onClick={onClick}
       >
-        {/* Imagem com borda personalizada */}
-        <motion.div 
-          className={`relative rounded-lg overflow-hidden ${isLeader ? 'border-4 border-[#ff6b66]' : 'border-2 border-[#ff6b66]/70'} shadow-xl transform-style-preserve-3d`}
-          whileHover={{ 
-            boxShadow: "0 10px 25px -3px rgba(219, 5, 0, 0.4), 0 4px 12px -2px rgba(219, 5, 0, 0.3)",
-          }}
-        >
-          <div className={`aspect-square ${isLeader ? 'w-40 h-40 md:w-48 md:h-48' : 'w-28 h-28 md:w-32 md:h-32'} overflow-hidden`}>
-            <img
-              src={image}
-              alt={name}
-              className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:rotate-1"
-            />
+        {/* Cartão frontal */}
+        <div className={`overflow-hidden rounded-xl shadow-xl ${isLeader ? 'bg-gradient-to-br from-white to-[#fff5f5]' : 'bg-white'}`}>
+          {/* Borda destacada para o líder */}
+          {isLeader && (
+            <div className="absolute inset-0 border-2 border-[#db0500] rounded-xl opacity-70"></div>
+          )}
+          
+          {/* Cabeçalho do cartão */}
+          <div className={`relative overflow-hidden ${isLeader ? 'h-28' : 'h-28'}`}>
+            {/* Fundo decorativo */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#db0500] to-[#9e0400] opacity-90"></div>
+            
+            {/* Padrão geométrico no fundo */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="h-full w-full" style={{ 
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              }}></div>
+            </div>
+            
+            {/* Logo da empresa no canto */}
+            <div className="absolute top-3 right-3 opacity-20">
+              <span className="font-bold text-xl tracking-tight text-white">DB</span>
+            </div>
           </div>
           
-          {/* Gradiente de borda personalizado */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#ff6b66]/20 to-[#aa0400]/30 transition-opacity duration-300"></div>
-            <div className={`absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-[#ff6b66] to-[#aa0400] ${isLeader ? 'opacity-100' : 'opacity-70'}`}></div>
+          {/* Imagem principal - AUMENTADA */}
+          <div className="absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className={`relative ${isLeader ? 'w-36 h-36' : 'w-32 h-32'} rounded-full overflow-hidden border-4 border-white shadow-lg`}
+              style={{ 
+                transform: 'translateZ(5px)',
+                boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)'
+              }}>
+              <img 
+                src={image} 
+                alt={name} 
+                className="w-full h-full object-cover"
+              />
+              
+              {/* Efeito de brilho no hover */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700" 
+                style={{ 
+                  transform: 'rotate(45deg) translateY(100%)', 
+                  animation: hover ? 'shine 1.5s ease forwards' : 'none'
+                }}></div>
+            </div>
+            
+            {/* Badge para o líder */}
             {isLeader && (
-              <>
-                <div className="absolute right-0 top-0 w-1 h-full bg-gradient-to-b from-[#ff6b66] to-[#aa0400]"></div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#ff6b66] to-[#aa0400]"></div>
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#ff6b66] to-[#aa0400]"></div>
-              </>
+              <div className="absolute -right-2 bottom-0 bg-[#db0500] text-white text-xs font-bold px-2 py-1 rounded-full shadow-md transform -rotate-12">
+                Diretor
+              </div>
             )}
           </div>
-
-          {/* Overlay de "Clique para detalhes" com efeito melhorado */}
-          <div className="absolute inset-0 bg-white/0 hover:bg-white/70 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100 backdrop-blur-sm hover:backdrop-blur-none">
-            <span className="text-white text-sm font-medium px-3 py-2 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300 bg-gradient-to-r from-[#db0500] to-[#a00300] shadow-lg">
-              Ver detalhes
-            </span>
+          
+          {/* Conteúdo do cartão - Ajustado o padding-top */}
+          <div className="px-4 pt-24 pb-4 text-center">
+            <h3 className={`${isLeader ? 'text-xl font-bold' : 'text-lg font-semibold'} text-gray-800 transition-transform duration-300 group-hover:scale-105`}>{name}</h3>
+            <p className="text-[#db0500] font-medium text-sm">{position}</p>
+            {region && <p className="text-gray-500 text-xs mt-1">{region}</p>}
+            
+            {/* Botão "Ver detalhes" */}
+            <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-4">
+              <span className="inline-flex items-center text-sm font-medium text-white bg-[#db0500] hover:bg-[#b00400] px-3 py-1.5 rounded-md transition-colors shadow-md">
+                Ver detalhes
+                <ChevronRight size={14} className="ml-1" />
+              </span>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </motion.div>
-      
-      {/* Informações do membro com efeito de gradiente */}
-      <h3 className={`${isLeader ? 'text-xl font-bold' : 'text-base font-semibold'} text-gray-800 text-center mb-1`}>{name}</h3>
-      <p className={`${isLeader ? 'text-[#db0500] font-medium' : 'text-[#db0500]/90 text-sm'} text-center`}>{position}</p>
-      {region && <p className="text-gray-500 text-xs text-center mt-1">{region}</p>}
     </motion.div>
   );
 };
 
-// Modal com informações detalhadas - mantido como solicitado
+// Modal com detalhes do membro e efeitos visuais
 const TeamMemberModal: React.FC<TeamMemberProps & { onClose: () => void }> = ({
   image, 
   name, 
@@ -97,53 +143,97 @@ const TeamMemberModal: React.FC<TeamMemberProps & { onClose: () => void }> = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.1 }}
+      transition={{ duration: 0.2 }}
       onClick={onClose}
     >
       <motion.div 
-        className="bg-white rounded-lg shadow-xl overflow-hidden max-w-md w-full relative"
-        initial={{ scale: 0.95 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0.95 }}
-        transition={{ duration: 0.1 }}
+        className="bg-white rounded-xl shadow-2xl overflow-hidden max-w-md w-full relative"
+        initial={{ scale: 0.9, y: 30 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.9, y: 30, opacity: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Botão de fechar */}
+        {/* Botão de fechar aprimorado */}
         <button 
-          className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 text-gray-700 hover:bg-[#db0500] hover:text-white transition-colors z-10"
+          className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 text-gray-700 hover:bg-[#db0500] hover:text-white transition-colors z-10 shadow-md"
           onClick={onClose}
         >
           <X size={16} />
         </button>
         
-        {/* Cabeçalho do modal com gradiente e imagem */}
-        <div className="relative h-32 bg-gradient-to-r from-[#db0500] to-[#aa0400] flex items-center justify-center">
-          {/* Logo da empresa no centro do cabeçalho */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img 
+        {/* Cabeçalho do modal com gradiente */}
+        <div className="relative h-32 bg-gradient-to-r from-[#db0500] to-[#9e0400] flex items-center justify-center overflow-hidden">
+          {/* Padrão geométrico do fundo */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="h-full w-full" style={{ 
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}></div>
+          </div>
+          
+          {/* Logo da empresa com efeito brilhante */}
+          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+            <motion.img 
               src="/logodb.webp" 
               alt="DB Representações Logo" 
               className="h-24 w-auto object-contain"
-            />
-          </div>
-          
-          <div className="absolute -bottom-16 left-6 w-32 h-32 rounded-lg border-4 border-white overflow-hidden shadow-lg">
-            <img 
-              src={image} 
-              alt={name} 
-              className="w-full h-full object-cover"
+              initial={{ opacity: 0.7, scale: 1 }}
+              animate={{ 
+                opacity: [0.7, 0.9, 0.7],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{ 
+                duration: 3,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
             />
           </div>
         </div>
         
-        {/* Conteúdo do modal */}
+        {/* Foto do membro da equipe */}
+        <div className="absolute top-32 left-6 transform -translate-y-1/2 w-32 h-32 rounded-xl border-4 border-white overflow-hidden shadow-2xl rotate-3">
+          <img 
+            src={image} 
+            alt={name} 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        
+        {/* Conteúdo do modal com animações */}
         <div className="pt-20 pb-6 px-6">
-          <h3 className="text-2xl font-bold text-gray-800">{name}</h3>
-          <p className="text-[#db0500] font-medium">{position}</p>
-          {region && <p className="text-gray-500 text-sm mb-4">{region}</p>}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <h3 className="text-2xl font-bold text-gray-800">{name}</h3>
+            <div className="flex items-center">
+              <span className="text-[#db0500] font-medium">{position}</span>
+              {region && (
+                <>
+                  <span className="mx-2">•</span>
+                  <span className="text-gray-500 text-sm">{region}</span>
+                </>
+              )}
+            </div>
+          </motion.div>
           
-          <div className="mt-6 space-y-4">
-            {/* Informações de contato */}
+          {/* Linha separadora */}
+          <motion.div 
+            className="h-px bg-gray-200 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.4 }}
+          ></motion.div>
+          
+          {/* Informações de contato */}
+          <motion.div 
+            className="space-y-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
             <div className="flex items-center space-x-3">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#db0500]/10 flex items-center justify-center text-[#db0500]">
                 <Phone size={18} />
@@ -167,26 +257,33 @@ const TeamMemberModal: React.FC<TeamMemberProps & { onClose: () => void }> = ({
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
           
           {/* Botão de contato */}
-          <div className="mt-8">
+          <motion.div 
+            className="mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
             <a 
               href={`mailto:${email}`} 
-              className="inline-block w-full py-3 px-6 bg-[#db0500] text-white text-center rounded-lg font-medium hover:bg-[#aa0400] transition-colors"
+              className="inline-block w-full py-3 px-6 bg-gradient-to-r from-[#db0500] to-[#9e0400] text-white text-center rounded-lg font-medium hover:from-[#b00400] hover:to-[#800300] transition-all transform hover:scale-105 shadow-lg"
             >
               Entrar em contato
             </a>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </motion.div>
   );
 };
 
+// Componente principal de apresentação da equipe
 const TeamPresentation = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMemberProps | null>(null);
 
+  // Dados dos membros da equipe
   const teamMembers = [
     {
       image: "/equipe/equipe1.jpg",
@@ -246,122 +343,82 @@ const TeamPresentation = () => {
     }
   ];
 
+  // Gerenciamento do modal
   const handleOpenModal = (member: TeamMemberProps) => {
     setSelectedMember(member);
-    // Desabilitar scroll do corpo quando o modal estiver aberto
     document.body.style.overflow = 'hidden';
   };
 
   const handleCloseModal = () => {
     setSelectedMember(null);
-    // Reabilitar scroll do corpo quando o modal for fechado
     document.body.style.overflow = 'auto';
   };
 
   return (
-    <section id="equipe" className="py-20 relative overflow-hidden bg-white text-gray-800">
-      {/* Efeito de partículas flutuantes */}
-      <div className="absolute inset-0 overflow-hidden opacity-30">
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div 
-            key={i}
-            className="absolute w-2 h-2 rounded-full bg-[#db0500]/60 animate-pulse"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 7}s`
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* Background geométrico aprimorado com cores claras */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        {/* Grid principal com linhas sutis */}
+    <section id="equipe" className="py-24 relative overflow-hidden">
+      {/* Fundo com grid e efeitos sutis */}
+      <div className="absolute inset-0 bg-white">
+        {/* Grid de fundo */}
         <div className="absolute inset-0" style={{ 
-          backgroundImage: `linear-gradient(rgba(230, 230, 230, 0.7) 1px, transparent 1px), linear-gradient(90deg, rgba(230, 230, 230, 0.7) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(230, 230, 230, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(230, 230, 230, 0.5) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
           backgroundPosition: 'center center',
-        }}>
-        </div>
+        }}></div>
         
-        {/* Linhas com tom vermelho suave */}
-        <div className="absolute inset-0" style={{ 
-          backgroundImage: `linear-gradient(rgba(219, 5, 0, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(219, 5, 0, 0.08) 1px, transparent 1px)`,
-          backgroundSize: '40px 40px',
-          backgroundPosition: 'center center',
-          filter: 'blur(1px)',
-        }}>
-        </div>
-        
-        {/* Overlay de gradiente suave */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-transparent to-[#db0500]/5"></div>
+        {/* Círculos decorativos */}
+        <div className="absolute top-0 right-0 w-2/3 h-2/3 rounded-full bg-gradient-to-b from-[#db0500]/5 to-transparent opacity-50 transform translate-x-1/3 -translate-y-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 rounded-full bg-gradient-to-t from-[#db0500]/5 to-transparent opacity-30 transform -translate-x-1/4 translate-y-1/4"></div>
       </div>
-
-      {/* Decoração lateral esquerda */}
-      <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[#db0500]/5 to-transparent"></div>
-      
-      {/* Decoração lateral direita */}
-      <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-[#db0500]/5 to-transparent"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* Título da seção aprimorado */}
-        <div className="text-center mb-12">
-          <motion.h2 
-            className="text-4xl font-bold mb-4 inline-block"
+        {/* Cabeçalho da seção */}
+        <div className="text-center mb-16">
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            Nossa <span className="text-gradient">Equipe</span>
-          </motion.h2>
+            <h2 className="text-4xl font-bold mb-4">
+              Nossa <span className="text-gradient">Equipe</span>
+            </h2>
+            
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Sob a liderança de Deoclecio Boff, nossa equipe de profissionais qualificados é o diferencial da DB Representações.
+            </p>
+          </motion.div>
           
-          <motion.p 
-            className="text-gray-300 max-w-2xl mx-auto text-sm md:text-base"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+          {/* Linha decorativa */}
+          <motion.div 
+            className="flex justify-center mt-8 mb-12"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.7 }}
           >
-            Sob a liderança de Deoclecio Boff, nossa equipe de profissionais qualificados é o diferencial da DB Representações.
-          </motion.p>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#db0500] via-[#ff6b66] to-[#db0500] rounded-full shadow-lg"></div>
+          </motion.div>
         </div>
         
-        {/* Linha decorativa aprimorada */}
-        <motion.div 
-          className="flex justify-center mb-12"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="w-24 h-1 bg-gradient-to-r from-[#db0500] via-[#ff6b66] to-[#db0500] rounded-full shadow-lg shadow-[#db0500]/20"></div>
-        </motion.div>
-        
-        {/* Grid de membros aprimorado */}
+        {/* Layout do Grid */}
         <div className="max-w-6xl mx-auto">
-          {/* Líder da equipe em posição de destaque com animação */}
-          <motion.div 
-            className="flex justify-center mb-12"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <TeamMember
-              key="chefe"
-              image={teamMembers[0].image}
-              name={teamMembers[0].name}
-              position={teamMembers[0].position}
-              region={teamMembers[0].region}
-              email={teamMembers[0].email}
-              phone={teamMembers[0].phone}
-              isLeader={true}
-              onClick={() => handleOpenModal(teamMembers[0])}
-            />
-          </motion.div>
+          {/* Destaque para o líder */}
+          <div className="flex justify-center mb-12">
+            <div className="w-full max-w-xs">
+              <TeamCard
+                key="leader"
+                image={teamMembers[0].image}
+                name={teamMembers[0].name}
+                position={teamMembers[0].position}
+                region={teamMembers[0].region}
+                email={teamMembers[0].email}
+                phone={teamMembers[0].phone}
+                isLeader={true}
+                onClick={() => handleOpenModal(teamMembers[0])}
+                index={0}
+              />
+            </div>
+          </div>
           
           {/* Separador elegante */}
           <motion.div 
@@ -370,36 +427,30 @@ const TeamPresentation = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#ff6b66]/70 to-transparent"></div>
-            <div className="absolute top-1/2 transform -translate-y-1/2 w-2 h-2 bg-[#ff6b66] rounded-full"></div>
+            <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#db0500]/70 to-transparent"></div>
+            <div className="absolute top-1/2 transform -translate-y-1/2 w-2 h-2 bg-[#db0500] rounded-full"></div>
           </motion.div>
           
-          {/* Restante da equipe em grid mais organizado e responsivo */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-6 gap-y-12 justify-items-center">
+          {/* Grid de membros da equipe */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
             {teamMembers.slice(1).map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-              >
-                <TeamMember
-                  image={member.image}
-                  name={member.name}
-                  position={member.position}
-                  region={member.region}
-                  email={member.email}
-                  phone={member.phone}
-                  onClick={() => handleOpenModal(member)}
-                />
-              </motion.div>
+              <TeamCard
+                key={index + 1}
+                image={member.image}
+                name={member.name}
+                position={member.position}
+                region={member.region}
+                email={member.email}
+                phone={member.phone}
+                onClick={() => handleOpenModal(member)}
+                index={index + 1}
+              />
             ))}
           </div>
         </div>
       </div>
-
-      {/* Modal de detalhes do membro - mantido como solicitado */}
+      
+      {/* Modal de detalhes do membro */}
       <AnimatePresence>
         {selectedMember && (
           <TeamMemberModal
@@ -408,6 +459,18 @@ const TeamPresentation = () => {
           />
         )}
       </AnimatePresence>
+      
+      {/* Estilo global para animações */}
+      <style jsx global>{`
+        @keyframes shine {
+          0% {
+            transform: rotate(45deg) translateY(100%);
+          }
+          100% {
+            transform: rotate(45deg) translateY(-100%);
+          }
+        }
+      `}</style>
     </section>
   );
 };
