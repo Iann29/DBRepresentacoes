@@ -23,13 +23,6 @@ const RestartButton: React.FC<RestartButtonProps> = ({ onClick }) => {
         </div>
         <span className="text-xs text-gray-700 mt-1 whitespace-nowrap">Modo interativo</span>
       </div>
-      
-      {/* Tooltip */}
-      <div className="absolute bottom-full right-0 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-        <div className="bg-white px-3 py-2 rounded shadow-md text-xs text-gray-700 whitespace-nowrap">
-          Iniciar visualização interativa da história
-        </div>
-      </div>
     </motion.button>
   );
 };
