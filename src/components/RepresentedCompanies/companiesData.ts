@@ -44,62 +44,52 @@ export const allCompanies: CompanyData[] = [
   // Demais empresas
   {
     name: 'Grossl',
-    logo: 'https://via.placeholder.com/400x200/f5f5f5/333333?text=GROSSL',
-    description: 'Produtos inovadores para o mercado moveleiro com foco em praticidade e design moderno.',
-    longDescription: 'A Grossl desenvolve soluções criativas para o setor moveleiro, com produtos que aliam praticidade, durabilidade e design contemporâneo. A empresa se destaca pela capacidade de entender as tendências do mercado e oferecer componentes que agregam valor aos projetos de seus clientes.',
-    slogan: 'Soluções que fazem a diferença',
-    catalogUrl: '/catalogos/grossl/catalogo_completo.pdf', // URL para download do catálogo
-    website: '#', // URL do site da empresa
+    logo: '/representadas/logogrossl.webp',
+    description: 'Especialistas em adesivos e abrasivos para indústrias e varejo, com marcas de referência mundial em inovação, qualidade e resistência.',
+    longDescription: 'A Grossl é especialista em adesivos e abrasivos para indústrias, apoiada em conhecimento técnico e portfólio com marcas de referência mundial em inovação, qualidade e resistência. Para o varejo, são responsáveis por levar as marcas líderes mundiais em inovação e performance com qualidade industrial, auxiliando desde a escolha do mix até a exposição dos produtos.',
+    slogan: 'FAÇA MAIS. FAÇA MELHOR.',
+    catalogUrl: '/catalogos/grossl/catalogo_produtos.pdf', // URL para download do catálogo
+    website: 'https://grossl.com.br/', // URL do site da empresa
     catalogList: [
-      { name: 'Catálogo Completo', url: '/catalogos/grossl/catalogo_completo.pdf' }
+      { name: 'Catálogo de Produtos', url: '/catalogos/grossl/catalogo_produtos.pdf' },
+      { name: 'Catálogo de Lixas', url: '/catalogos/grossl/catalogo_lixasgrossl.pdf' },
+      { name: 'Catálogo Titebond', url: '/catalogos/grossl/catalogo_titebond.pdf' }
     ]
   },
   {
     name: 'Guidini',
-    logo: 'https://via.placeholder.com/400x200/f5f5f5/333333?text=GUIDINI',
-    description: 'Soluções criativas para projetos de móveis que valorizam a funcionalidade e o acabamento.',
-    longDescription: 'A Guidini é especializada em componentes e acessórios que trazem funcionalidade e acabamento refinado para móveis. Com anos de experiência no mercado, a empresa desenvolve produtos que ajudam a resolver desafios de design e otimização de espaço em diversos ambientes.',
-    slogan: 'Excelência em cada detalhe',
-    catalogUrl: '/catalogos/guidini/catalogo_geral.pdf', // URL para download do catálogo
-    website: '#', // URL do site da empresa
+    logo: '/representadas/logoguidini.webp',
+    description: 'Soluções inovadoras para mobiliário inteligente, garantindo qualidade e produtividade para a indústria moveleira.',
+    longDescription: 'O propósito da Guidini é possibilitar a máxima otimização e aproveitamento da produção do mobiliário inteligente, garantindo qualidade e produtividade para seus clientes. A visão Mobili Intelligenti da Guidini foi construída com base na inovação, criatividade e simplicidade para atender a indústria moveleira e o mercado arquitetônico. Para a Guidini, padrões inteligentes e abertos constroem ecossistemas de parceria, possibilitando a criação de soluções para problemas.',
+    slogan: 'Uma vida dedicada à inovações em mobiliário',
+    catalogUrl: '/catalogos/guidini/catalogo_produtos.pdf', // URL para download do catálogo
+    website: 'https://guidinielectric.com.br/', // URL do site da empresa
     catalogList: [
-      { name: 'Catálogo Geral', url: '/catalogos/guidini/catalogo_geral.pdf' }
-    ]
-  },
-  {
-    name: 'Portábille',
-    logo: 'https://via.placeholder.com/400x200/f5f5f5/333333?text=PORTÁBILLE',
-    description: 'Componentes de alta qualidade para seu projeto, com ênfase em soluções práticas e duradouras.',
-    longDescription: 'A Portábille se destaca no fornecimento de componentes para móveis que combinam funcionalidade, durabilidade e design inteligente. Seus produtos são desenvolvidos para atender às demandas de projetos residenciais e comerciais, sempre com foco na satisfação do cliente final.',
-    slogan: 'Componentes que transformam projetos',
-    catalogUrl: '/catalogos/portabil/catalogo_principal.pdf', // URL para download do catálogo
-    website: '#', // URL do site da empresa
-    catalogList: [
-      { name: 'Catálogo Principal', url: '/catalogos/portabil/catalogo_principal.pdf' }
+      { name: 'Catálogo de Produtos', url: '/catalogos/guidini/catalogo_produtos.pdf' }
     ]
   },
   {
     name: 'Rubinettos',
-    logo: 'https://via.placeholder.com/400x200/f5f5f5/333333?text=RUBINETTOS',
-    description: 'Especializada em acessórios para móveis com foco em qualidade e acabamento superior.',
-    longDescription: 'A Rubinettos é reconhecida pela excelência na fabricação de acessórios para móveis. Sua linha de produtos combina materiais de primeira linha, processos de produção rigorosos e design atemporal, oferecendo soluções que agregam valor e funcionalidade a qualquer projeto.',
-    slogan: 'Qualidade que você pode ver e sentir',
-    catalogUrl: '/catalogos/rubinettos/catalogo_completo.pdf', // URL para download do catálogo
-    website: '#', // URL do site da empresa
+    logo: '/representadas/logorubinettos.webp',
+    description: 'Especialista em misturadores de alto luxo para banheiros e cozinhas, combinando design, acabamentos únicos e funcionalidade.',
+    longDescription: 'Fundada em 1994, a Rubinettos se especializou na comercialização de misturadores de alto luxo para banheiros e cozinhas. Com foco na inovação e novas tendências, a empresa desenvolve produtos que combinam experiência e confiabilidade para produzir metais com design, acabamentos únicos e refinados. Seus produtos refletem com precisão as necessidades dos clientes, aliando conscientização ambiental e sistemas inovadores que proporcionam solidez, segurança e qualidade extraordinária.',
+    slogan: 'Vivendo pelo único, o inesperado.',
+    catalogUrl: '/catalogos/rubinettos/catalogo_principal.pdf', // URL para download do catálogo
+    website: 'https://www.rubinettos.com.br/', // URL do site da empresa
     catalogList: [
-      { name: 'Catálogo Completo', url: '/catalogos/rubinettos/catalogo_completo.pdf' }
+      { name: 'Catálogo Principal', url: '/catalogos/rubinettos/catalogo_principal.pdf' }
     ]
   },
   {
-    name: 'Seccare',
-    logo: 'https://via.placeholder.com/400x200/f5f5f5/333333?text=SECCARE',
-    description: 'Soluções em ferragens e componentes para móveis com foco em praticidade e durabilidade.',
-    longDescription: 'A Seccare oferece uma linha completa de ferragens e componentes que se destacam pela praticidade de instalação e durabilidade. Seus produtos são desenvolvidos para facilitar o trabalho dos profissionais do setor moveleiro, garantindo resultados de alta qualidade e satisfação do cliente final.',
-    slogan: 'Simplicidade e eficiência para seu projeto',
-    catalogUrl: '/catalogos/seccare/catalogo_geral.pdf', // URL para download do catálogo
-    website: '#', // URL do site da empresa
+    name: 'ComfortDoor',
+    logo: '/representadas/logocomfortdoor.webp',
+    description: 'Fabricante de acessórios para portas e janelas que cria produtos inovadores para o segmento de acessórios para casa e decoração.',
+    longDescription: 'A ComfortDoor vai além de ser uma fabricante de acessórios para portas e janelas. Com 10 anos de mercado, a empresa está presente em todos os estados do Brasil, com milhares de clientes satisfeitos. Seu objetivo é criar produtos que ofereçam praticidade de forma inovadora para o segmento de acessórios para casa e decoração, surpreendendo na experiência de atendimento dos clientes através de valores presentes em cada um dos seus colaboradores e parceiros.',
+    slogan: 'Inovação em acessórios para casa e decoração',
+    catalogUrl: '/catalogos/comfortdoor/catalogo_principal.pdf', // URL para download do catálogo
+    website: 'https://www.comfortdoor.com.br/', // URL do site da empresa
     catalogList: [
-      { name: 'Catálogo Geral', url: '/catalogos/seccare/catalogo_geral.pdf' }
+      { name: 'Catálogo Principal', url: '/catalogos/comfortdoor/catalogo_principal.pdf' }
     ]
   }
 ];
