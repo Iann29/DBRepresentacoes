@@ -23,7 +23,12 @@ const CompanyHistory: React.FC = () => {
     {
       year: 1994,
       title: "Início da Jornada",
-      description: "Deoclecio Piffer inicia sua carreira como representante comercial, com foco em materiais elétricos e equipamentos industriais."
+      description: "Deoclecio Piffer inicia sua carreira como vendedor externo CLT, dando os primeiros passos no setor comercial."
+    },
+    {
+      year: 1995,
+      title: "Autonomia Profissional",
+      description: "Deoclecio se torna vendedor autônomo preposto, ganhando mais liberdade para desenvolver seu trabalho comercial."
     },
     {
       year: 1998,
@@ -181,9 +186,9 @@ const CompanyHistory: React.FC = () => {
         )}
       </AnimatePresence>
       
-      {/* Botão de reinício - mostrado apenas quando o hijacking está inativo e o usuário saiu explicitamente */}
+      {/* Botão de reinício - mostrado sempre que o hijacking está inativo e o componente está visível */}
       <AnimatePresence>
-        {!isHijacking && userExited && isVisible && (
+        {!isHijacking && isVisible && (
           <RestartButton onClick={restartHijacking} />
         )}
       </AnimatePresence>
