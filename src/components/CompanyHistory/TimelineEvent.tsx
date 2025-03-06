@@ -18,7 +18,7 @@ const TimelineEventComponent: React.FC<TimelineEventProps> = ({ event }) => {
         x: 0
       }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
       style={{ display: 'flex' }}
     >
       {/* Conteúdo do evento - sempre à direita */}
@@ -26,8 +26,9 @@ const TimelineEventComponent: React.FC<TimelineEventProps> = ({ event }) => {
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
           className="bg-white p-6 rounded-lg shadow-lg"
+          data-component-name="MotionComponent"
         >
           <h3 className="text-3xl font-bold text-[#db0500]">{event.year}</h3>
           <h4 className="text-xl font-semibold text-gray-800 mt-2">{event.title}</h4>

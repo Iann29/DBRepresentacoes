@@ -100,7 +100,7 @@ export const useScrollHijacking = ({
     const handleWheel = (e: WheelEvent) => {
       // Throttle para evitar disparos muito rápidos - aumentado para uma sensação mais suave
       const now = Date.now();
-      if (now - lastScrollTime.current < 250 || isScrolling) {
+      if (now - lastScrollTime.current < 600 || isScrolling) {
         e.preventDefault();
         return;
       }
@@ -129,7 +129,7 @@ export const useScrollHijacking = ({
       // Desativar o flag de scrolling após uma animação - aumentado para animações mais suaves
       setTimeout(() => {
         setIsScrolling(false);
-      }, 700);
+      }, 1000);
     };
 
     // Touch events para suporte mobile
@@ -211,8 +211,6 @@ export const useScrollHijacking = ({
 
   return {
     isHijacking,
-    scrollDirection,
-    enableHijacking,
-    disableHijacking
+    setIsHijacking
   };
 };

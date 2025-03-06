@@ -12,7 +12,10 @@ const FounderImage: React.FC<FounderImageProps> = ({ isHijacking = false }) => {
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.8 }}
-      transition={{ duration: 0.4 }}
+      transition={{ 
+        duration: 0.8,
+        ease: "easeInOut"
+      }}
     >
       <div className="relative">
         <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg">

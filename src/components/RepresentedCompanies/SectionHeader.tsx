@@ -18,7 +18,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle }) => {
       </div>
       
       <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-        Nossas <span className="text-[#db0500]">Empresas</span> <span className="text-gray-900">Representadas</span>
+        Nossas <span className="text-gray-900">Empresas</span> <span className="text-[#db0500]">Representadas</span>
       </h2>
       
       <p className="text-lg text-gray-700 mx-auto">

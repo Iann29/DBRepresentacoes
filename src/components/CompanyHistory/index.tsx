@@ -7,11 +7,14 @@ import FounderImage from './FounderImage';
 import TimelineEventComponent from './TimelineEvent';
 import TimelineControls from './TimelineControls';
 import YearIndicator from './YearIndicator';
+import ExitButton from './ExitButton';
+import RestartButton from './RestartButton';
 import { useScrollHijacking } from './useScrollHijacking';
 
 const CompanyHistory: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [userExited, setUserExited] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const { setHeaderVisible } = useHeader();
 
@@ -103,14 +106,41 @@ const CompanyHistory: React.FC = () => {
   }, [setHeaderVisible]);
 
   // Configuração do hook de scroll hijacking
-  const { isHijacking } = useScrollHijacking({
-    enabled: isVisible,
+  const { isHijacking, setIsHijacking } = useScrollHijacking({
+    enabled: isVisible && !userExited,
     containerRef: sectionRef,
     onNext: () => navigateToEvent('next'),
     onPrev: () => navigateToEvent('prev'),
     isFirstItem: activeIndex === 0,
     isLastItem: activeIndex === timelineEvents.length - 1
   });
+
+  // Função para sair do scroll hijacking
+  const exitHijacking = () => {
+    setIsHijacking(false);
+    setUserExited(true);
+    // Rolar para o início da seção
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Função para reiniciar o scroll hijacking
+  const restartHijacking = () => {
+    setUserExited(false);
+    setActiveIndex(0); // Voltar para o primeiro evento
+    // Centralizar a seção na tela
+    if (sectionRef.current) {
+      const rect = sectionRef.current.getBoundingClientRect();
+      const top = window.scrollY + rect.top - (window.innerHeight - rect.height) / 2;
+      window.scrollTo({ top, behavior: 'smooth' });
+      
+      // Pequeno delay para garantir que o scroll termine antes de ativar o hijacking
+      setTimeout(() => {
+        setIsHijacking(true);
+      }, 500);
+    }
+  };
 
   // Suporte para navegação com teclado
   useEffect(() => {
@@ -144,10 +174,24 @@ const CompanyHistory: React.FC = () => {
       {/* Header */}
       <TimelineHeader isHijacking={isHijacking} />
       
+      {/* Botão de saída - mostrado apenas quando o hijacking está ativo */}
+      <AnimatePresence>
+        {isHijacking && (
+          <ExitButton onClick={exitHijacking} />
+        )}
+      </AnimatePresence>
+      
+      {/* Botão de reinício - mostrado apenas quando o hijacking está inativo e o usuário saiu explicitamente */}
+      <AnimatePresence>
+        {!isHijacking && userExited && isVisible && (
+          <RestartButton onClick={restartHijacking} />
+        )}
+      </AnimatePresence>
+      
       {/* Timeline */}
       <div className="container mx-auto px-4 relative z-10">
         {/* Foto do fundador */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {activeIndex === 0 && <FounderImage isHijacking={isHijacking} />}
         </AnimatePresence>
         
@@ -178,8 +222,6 @@ const CompanyHistory: React.FC = () => {
           onSelectIndex={navigateToIndex}
         />
       )}
-      
-      {/* Indicador de scroll hijacking removido */}
     </div>
   );
 };

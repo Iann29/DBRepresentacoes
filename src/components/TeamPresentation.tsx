@@ -294,7 +294,7 @@ const TeamPresentation = () => {
     {
       image: "/equipe/deoclecioboff.webp",
       name: "Deoclecio Boff",
-      position: "Diretor",
+      position: "Representante Comercial",
       region: "",
       email: "deocleciob@deboff.com.br",
       phone: "(54) 99982-7120"
