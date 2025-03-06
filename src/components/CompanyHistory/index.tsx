@@ -170,8 +170,8 @@ const CompanyHistory: React.FC = () => {
   return (
     <div 
       ref={sectionRef} 
-      className={`relative py-24 bg-white min-h-[800px] flex flex-col items-center justify-center overflow-hidden ${
-        isHijacking ? 'timeline-hijacked' : ''
+      className={`relative bg-white flex flex-col items-center justify-center overflow-hidden ${
+        isHijacking ? 'timeline-hijacked py-0 min-h-screen' : 'py-16 min-h-[600px]'
       }`}
       id="historia"
       data-hijacking={isHijacking ? 'active' : 'inactive'}

@@ -230,3 +230,31 @@ body:not(.scroll-hijacking-active) .timeline-hijacked {
 .timeline-hijacked .fixed {
   opacity: 1 !important;
 }
+
+/* Estilos específicos para o cabeçalho da timeline */
+.timeline-header {
+  transition: padding 0.5s ease !important;
+}
+
+.timeline-header.hijacking-active {
+  padding-top: 25vh !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.timeline-header.hijacking-inactive {
+  padding-top: 1rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+/* Media queries para ajustar o padding em diferentes tamanhos de tela */
+@media (max-width: 768px) {
+  .timeline-header.hijacking-active {
+    padding-top: 20vh !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-header.hijacking-active {
+    padding-top: 15vh !important;
+  }
+}
