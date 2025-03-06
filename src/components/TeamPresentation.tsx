@@ -294,7 +294,7 @@ const TeamPresentation = () => {
     {
       image: "/equipe/deoclecioboff.webp",
       name: "Deoclecio Boff",
-      position: "Representante Comercial",
+      position: "Diretor",
       region: "",
       email: "deocleciob@deboff.com.br",
       phone: "(54) 99982-7120"
@@ -324,28 +324,12 @@ const TeamPresentation = () => {
       phone: "(54) 99999-5555"
     },
     {
-      image: "/equipe/deoclecioboff.webp", // Não encontrei imagem específica para Martha, usando placeholder
-      name: "Martha Moraes",
-      position: "Comercial",
-      region: "",
-      email: "martha@dbrepresentacoes.com.br",
-      phone: "(54) 99999-4444"
-    },
-    {
       image: "/equipe/jenneffercruz.webp",
       name: "Jenneffer Cruz",
       position: "Consultora Comercial",
       region: "",
       email: "dbcomercial@deboff.com.br",
       phone: "(54) 99996-7120"
-    },
-    {
-      image: "/equipe/deoclecioboff.webp", // Não encontrei imagem específica para Ademir, usando placeholder
-      name: "Ademir Pagnussat",
-      position: "Representante Parceiro (Häfele)",
-      region: "",
-      email: "ademir@dbrepresentacoes.com.br",
-      phone: "(54) 99996-7538"
     }
   ];
 
