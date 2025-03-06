@@ -5,6 +5,7 @@ import Differentials from './components/Differentials';
 import Divider from './components/Divider';
 import TeamPresentation from './components/TeamPresentation';
 import RepresentedCompanies from './components/RepresentedCompanies';
+import CompanyHistory from './components/CompanyHistory';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import { ArrowUp } from 'lucide-react';
@@ -12,7 +13,6 @@ import { HeaderProvider } from './contexts/HeaderContext';
 import { LenisProvider } from './contexts/LenisContext';
 import { useSmoothScroll } from './components/ui/SmoothScroll';
 import '../framer/styles.css';
-import HistoryFramerComponent from '../framer/history';
 
 function AppContent() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -47,7 +47,7 @@ function AppContent() {
             <TeamPresentation />
           </div>
           <RepresentedCompanies />
-          <HistoryFramerComponent style={{ width: '100%' }} />
+          <CompanyHistory />
           <ContactForm />
         </main>
         <Footer />

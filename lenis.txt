@@ -1,0 +1,244 @@
+Um dos grandes benefícios do Lenis é que ele utiliza os elementos de rolagem nativos da página em vez de “forçar” a rolagem dentro de um wrapper com transformações CSS. Isso significa que recursos nativos do navegador, como o CSS position: sticky, continuam funcionando normalmente mesmo com o scroll suave ativo​
+. Em bibliotecas tradicionais de smooth scroll, position: sticky costuma não funcionar (porque o conteúdo é movido via CSS transform), mas com Lenis esse recurso permanece compatível, permitindo layouts fixos durante a rolagem sem problemas de renderização​
+
+
+Integração com frameworks (React, Vue, etc.): Se você desenvolve em React ou Vue, há wrappers oficiais do Lenis para facilitar sua utilização nessas frameworks. O repositório do Lenis disponibiliza pacotes adicionais: lenis/react e lenis/vue, que fornecem componentes ou hooks especializados para controlar a rolagem suave dentro do ciclo de vida do framework​
+GITHUB.COM
+. Por exemplo, em React existe o hook useLenis (parte do pacote @studio-freight/lenis/react) que pode inicializar e fornecer a instância do Lenis corretamente dentro de um componente, e lida automaticamente com coisas como destruir a instância ao desmontar o componente. Isso simplifica a adoção do Lenis em aplicações SPA modernas, evitando a necessidade de manipular manualmente a subscrição em requestAnimationFrame ou adicionar event listeners diretamente no DOM. Da mesma forma, no Vue.js, o pacote lenis/vue exporta uma diretiva ou componente para englobar o conteúdo que terá rolagem suavizada.
+Lenis Snap (Scroll Snap): Atualmente, o Lenis não é compatível com CSS scroll-snap nativamente (comportamento de snap na rolagem) devido à forma como a suavização é implementada. Se seu projeto requer funcionalidade de snap (por exemplo, seções que “grudam” de página em página na rolagem), os autores fornecem um complemento chamado lenis/snap​
+GITHUB.COM
+. Esse plugin estende o Lenis para suportar efeito de snap entre elementos, simulando o comportamento do CSS scroll-snap porém usando o mecanismo de rolagem suave. A integração do plugin envolve adicioná-lo e configurar quais elementos ou pontos devem ser "snap". Consulte a documentação do lenis/snap para detalhes de uso específico.
+Outras integrações e exemplos: O Lenis, por ser open-source, já foi adotado em diversos projetos demonstrativos. Há exemplos de uso junto com Three.js (por exemplo, o plugin comunitário r3f-scroll-rig integra Lenis com react-three-fiber para efeitos 3D sincronizados com o scroll​
+GITHUB.COM
+) e até wrappers para substituir diretamente outras libs (há um plugin que imita a API do Locomotive Scroll usando Lenis, facilitando migrações). No geral, integrar o Lenis consiste em inicializá-lo e depois garantir que outras partes do código conheçam ou utilizem a instância do Lenis ao invés do scroll nativo. Como vimos, no caso do GSAP ScrollTrigger basta informá-lo das atualizações de scroll e usar seu loop de animação. Em outros casos, pode ser necessário ajustar seletores ou chamadas de window.scrollTo para utilizar lenis.scrollTo em seu lugar, caso queira que essas ações também sejam suaves (o Lenis inclusive pode capturar cliques em âncoras automaticamente se anchors: true estiver habilitado​
+GITHUB.COM
+).
+
+
+2. Lista de Métodos Disponíveis no Lenis
+Uma vez inicializado (const lenis = new Lenis(...);), o objeto Lenis fornece vários métodos para controlar e configurar o comportamento da rolagem suave. Abaixo está a lista completa de métodos públicos disponíveis, com explicações detalhadas de cada um:
+raf(time) – Atualiza a animação de rolagem. Deve ser chamado a cada frame (tipicamente dentro de um loop requestAnimationFrame) para que o Lenis realize os cálculos e aplique a rolagem suave continuamente​
+GITHUB.COM
+. O parâmetro time é o timestamp atual em milissegundos (geralmente fornecido pelo próprio requestAnimationFrame). Em uso básico, você pode chamar lenis.raf(time) em cada frame para animar a rolagem; alternativamente, pode habilitar a opção autoRaf para que o Lenis gerencie esse loop automaticamente (ver Setup mais adiante).
+scrollTo(target, options) – Realiza uma rolagem suave até um alvo específico. O parâmetro target define o destino e pode ser fornecido de diferentes formas: como um número de pixels (posição vertical em pixels), como uma string indicando um seletor CSS ou palavras-chave especiais ("top", "bottom", "left", "right", "start", "end"), ou como um HTMLElement (um elemento DOM para o qual se deseja rolar)​
+GITHUB.COM
+. Opcionalmente, pode-se passar um objeto options para customizar a animação da rolagem até o alvo. As opções disponíveis incluem:
+offset (número): Um deslocamento adicional em pixels aplicado ao destino, similar ao CSS scroll-padding-top (útil para ajustar a posição final, por exemplo, considerando a altura de um header fixo)​
+GITHUB.COM
+.
+lerp (número): A intensidade da interpolação linear da animação. Funciona como um “fator de suavização” por frame (entre 0 e 1) caso prefira ajustar manualmente a velocidade de amortecimento em vez de usar duração fixa​
+GITHUB.COM
+.
+duration (número): Duração da animação de scroll, em segundos. Se definido, a rolagem suave ocorrerá nesse intervalo de tempo fixo em vez de usar o lerp frame-a-frame​
+GITHUB.COM
+.
+easing (função): Função de easing personalizada para moldar a curva de aceleração/desaceleração da rolagem. Por padrão, o Lenis utiliza uma função easing custom (semelhante a uma ease-out exponencial)​
+GITHUB.COM
+​
+GITHUB.COM
+, mas você pode fornecer sua própria função de easing para a animação (por exemplo, funções do Easings.net​
+GITHUB.COM
+).
+immediate (booleano): Se true, ignora qualquer duração ou easing, fazendo a rolagem saltar instantaneamente para o alvo (útil para pular animações em certos contextos)​
+GITHUB.COM
+.
+lock (booleano): Se true, impede que o usuário interfira na rolagem até que o scroll suave chegue ao destino. Essencialmente, “trava” a rolagem do usuário temporariamente durante a animação​
+GITHUB.COM
+.
+force (booleano): Se true, força a rolagem até o destino mesmo se a instância do Lenis estiver parada/pausada (ver método stop() abaixo)​
+GITHUB.COM
+.
+onComplete (função): Função de callback a ser executada quando a animação de rolagem alcançar o destino final. Útil para disparar ações após o término do scroll suave (por exemplo, carregar conteúdo adicional, iniciar outra animação, etc.)​
+GITHUB.COM
+.
+userData (objeto): Um objeto qualquer que será repassado nos eventos de scroll emitidos durante essa animação. Pode ser usado para identificar a origem da rolagem ou transmitir informações customizadas ao tratar eventos de scroll​
+GITHUB.COM
+.
+Exemplo de uso: lenis.scrollTo('#sessao2', { duration: 1.5, easing: t => t*t }); – isso rolaria suavemente até o elemento com id sessao2 em 1.5 segundos usando uma função easing quadrática personalizada.
+on(event, handler) – Registra um listener (ouvinte) para eventos do Lenis. Os eventos disponíveis incluem principalmente "scroll" e "virtual-scroll"​
+GITHUB.COM
+.
+O evento "scroll" é disparado a cada atualização de scroll suave e invoca o handler passando a instância do Lenis como argumento​
+GITHUB.COM
+. Isso permite, por exemplo, executar lógica personalizada durante a rolagem (como atualizar uma barra de progresso ou sincronizar animações manuais com a posição de scroll).
+Já o evento "virtual-scroll" fornece informações mais detalhadas de entrada do usuário, passando um objeto com as propriedades { deltaX, deltaY, event } para o handler – ou seja, a variação do scroll em X e Y e o evento original de rolagem (mouse/touch)​
+GITHUB.COM
+. Esse evento pode ser útil para detectar a intenção de rolagem do usuário mesmo quando a rolagem suave está temporariamente pausada, ou para integrações avançadas.
+Observação: Por padrão, o Lenis aplica prevenção em cliques de links âncora durante a rolagem (evitando comportamentos inesperados enquanto a página ainda está se movendo). Se você precisar capturar cliques em links de âncora normalmente, defina a opção anchors: true na inicialização (ver seção de Considerações)​
+GITHUB.COM
+.
+stop() – Pausa/para temporariamente a rolagem suave controlada pelo Lenis​
+GITHUB.COM
+. Quando você chama lenis.stop(), a instância entra em modo stopped: isso geralmente impede o usuário de continuar rolando (inercialmente) naquele momento. Internamente, o Lenis adiciona a classe CSS lenis-stopped ao elemento root durante a pausa, o que por padrão aplica overflow: clip para travar a posição atual​
+GITHUB.COM
+. Esse método é útil quando se deseja interromper o scroll em certas condições – por exemplo, ao abrir um modal que deve impedir a rolagem de fundo.
+start() – Retoma a rolagem suave após ter sido pausada por stop()​
+GITHUB.COM
+. Chamando lenis.start(), a instância volta ao estado ativo e o usuário pode voltar a rolar normalmente. A classe lenis-stopped é removida do root e a rolagem suave continua de onde parou. Use esse método em conjunto com stop() para controlar manualmente quando a página deve ou não responder ao scroll do usuário (por exemplo, liberando a rolagem ao fechar um modal anteriormente aberto).
+resize() – Recalcula tamanhos internos e métricas de rolagem​
+GITHUB.COM
+. Normalmente o Lenis monitora automaticamente mudanças de tamanho na página (por meio de ResizeObserver) para atualizar seus cálculos de limites de scroll. Contudo, se a opção autoResize estiver desativada ou se ocorrerem mudanças de layout drásticas sem disparar eventos de resize (por exemplo, manipulação de DOM via script), pode ser necessário chamar manualmente lenis.resize(). Isso garante que o Lenis reajuste o valor máximo de scroll, alturas de conteúdo etc., evitando que a rolagem suave “termine” antes do final real do conteúdo ou apresente falhas após mudanças de layout.
+destroy() – Destrói a instância do Lenis, removendo todos os event listeners e limpando seus efeitos​
+GITHUB.COM
+. Após chamar lenis.destroy(), a página volta ao comportamento de scroll nativo padrão (o conteúdo retorna ao estado normal de rolagem sem suavização e eventos do Lenis não serão mais emitidos). É importante usar esse método em aplicações de página única (Single Page Applications) ou ao trocar de páginas/seções onde o Lenis foi inicializado, para evitar múltiplas instâncias concorrentes ou leaks de memória/eventos.
+
+
+3. Exemplos Práticos de Código (Scroll Suave e Position: Sticky)
+Nesta seção, veremos exemplos de como implementar o Lenis na prática para obter efeitos de scroll suave, incluindo um caso de uso com um elemento usando position: sticky. Os exemplos abaixo ilustram desde a configuração básica até a interação com CSS sticky.
+Exemplo 1: Configuração Básica do Scroll Suave
+No exemplo a seguir, implementamos o Lenis de forma simples em uma página web estática. Suponha que temos um HTML básico com conteúdo suficiente para rolagem:
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exemplo Lenis</title>
+  <!-- Inclua o CSS do Lenis (recomendado) -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.2.0/dist/lenis.css" />
+  <!-- Conteúdo de estilo opcional -->
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    section { height: 100vh; display: flex; align-items: center; justify-content: center; }
+    section:nth-child(odd) { background: #f0f0f0; }
+    section:nth-child(even) { background: #d0e0ff; }
+  </style>
+</head>
+<body>
+  <!-- Conteúdo de exemplo com seções altas para gerar scroll -->
+  <section>Seção 1</section>
+  <section>Seção 2</section>
+  <section>Seção 3</section>
+  <section>Seção 4</section>
+
+  <!-- Importa o script do Lenis -->
+  <script src="https://unpkg.com/lenis@1.2.0/dist/lenis.min.js"></script>
+  <script>
+    // Inicializa o Lenis com configurações básicas
+    const lenis = new Lenis({
+      smoothWheel: true,   // ativa suavização para scroll via roda do mouse
+      smoothTouch: true,   // ativa suavização para scroll via toque (touch)
+      lerp: 0.1,           // intensidade da interpolação linear (10%)
+      // autoRaf: true,    // (opcional) se true, Lenis gerencia o raf internamente
+    });
+
+    // Loop de animação: necessário se não usar autoRaf
+    function raf(time) {
+      lenis.raf(time);     // informa ao Lenis o timestamp do frame
+      requestAnimationFrame(raf); // agenda o próximo frame
+    }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exemplo Lenis</title>
+  <!-- Inclua o CSS do Lenis (recomendado) -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.2.0/dist/lenis.css" />
+  <!-- Conteúdo de estilo opcional -->
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    section { height: 100vh; display: flex; align-items: center; justify-content: center; }
+    section:nth-child(odd) { background: #f0f0f0; }
+    section:nth-child(even) { background: #d0e0ff; }
+  </style>
+</head>
+<body>
+  <!-- Conteúdo de exemplo com seções altas para gerar scroll -->
+  <section>Seção 1</section>
+  <section>Seção 2</section>
+  <section>Seção 3</section>
+  <section>Seção 4</section>
+
+  <!-- Importa o script do Lenis -->
+  <script src="https://unpkg.com/lenis@1.2.0/dist/lenis.min.js"></script>
+  <script>
+    // Inicializa o Lenis com configurações básicas
+    const lenis = new Lenis({
+      smoothWheel: true,   // ativa suavização para scroll via roda do mouse
+      smoothTouch: true,   // ativa suavização para scroll via toque (touch)
+      lerp: 0.1,           // intensidade da interpolação linear (10%)
+      // autoRaf: true,    // (opcional) se true, Lenis gerencia o raf internamente
+    });
+
+    // Loop de animação: necessário se não usar autoRaf
+    function raf(time) {
+      lenis.raf(time);     // informa ao Lenis o timestamp do frame
+      requestAnimationFrame(raf); // agenda o próximo frame
+    }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body { margin: 0; }
+    header {
+      position: sticky;
+      top: 0;
+      background: #333;
+      color: #fff;
+      padding: 1rem;
+      font-size: 1.2rem;
+    }
+    .content {
+      height: 2000px; /* conteúdo suficientemente alto para scroll */
+      background: linear-gradient(#e0eafc, #cfdef3);
+    }
+  </style>
+</head>
+<body>
+  <header>Meu Cabeçalho Fixo (Sticky)</header>
+  <div class="content">
+    Role a página para ver o efeito do cabeçalho fixo em ação...
+  </div>
+
+  <!-- Scripts Lenis -->
+  <script src="https://unpkg.com/lenis@1.2.0/dist/lenis.min.js"></script>
+  <script>
+    const lenis = new Lenis({
+      autoRaf: true,  // gerencia o loop de animação automaticamente
+      smoothWheel: true,
+      smoothTouch: true
+    });
+  </script>
+</body>
+</html>
+
+
+Descrição: Neste HTML simples, definimos um <header> com position: sticky; top: 0. Assim, ele deveria ficar colado ao topo da janela quando a página é rolada, comportamento nativo do CSS. Abaixo, um <div> grande serve de conteúdo rolável (com um gradiente de fundo para visualização).Após o conteúdo, carregamos o Lenis e o inicializamos com autoRaf: true para conveniência, permitindo que ele entre em ação imediatamente. Ao visualizar essa página, o cabeçalho inicialmente está no topo. Conforme o usuário rola para baixo, o Lenis suaviza a rolagem, mas o cabeçalho permanece fixo no topo da tela como esperado, comportando-se corretamente graças à compatibilidade do Lenis com elementos sticky​
+DIGIDOP.COM
+. Em bibliotecas de scroll suave menos integradas, seria comum ver o cabeçalho não acompanhar ou “quebrar” o posicionamento, mas o Lenis evita esse problema mantendo a rolagem no elemento raiz real da página.Dica: Você pode ajustar as configurações do Lenis (como lerp ou duration) para modificar a sensação da rolagem. Por exemplo, para uma rolagem mais lenta e “pesada”, pode-se diminuir o lerp para um valor próximo de 0 (ex: 0.05) ou aumentar a duration para ~2 segundos; para uma rolagem mais responsiva e rápida, use lerp maior (próximo a 1) ou uma duration menor. Lembre-se de que lerp e duration são mutuamente exclusivos – se lerp for definido, o Lenis ignora duration e vice-versa​
+GITHUB.COM
+​
+GITHUB.COM
+.
+
+5. Integração com Outras Bibliotecas e Frameworks
+O Lenis foi construído para ser relativamente agnóstico e fácil de integrar com outras ferramentas do ecossistema web. Aqui discutimos algumas integrações comuns:
+Integração com bibliotecas de animação (ex: GSAP): Uma aplicação típica é usar Lenis em conjunto com o GSAP ScrollTrigger para animar elementos conforme a página rola suavemente. Nesse cenário, queremos que o ScrollTrigger do GSAP seja atualizado conforme o Lenis avança o scroll. A própria documentação do Lenis sugere uma configuração simples: você pode escutar o evento de scroll do Lenis e chamar ScrollTrigger.update, bem como usar o ticker do GSAP para acionar o lenis.raf. Em código, a integração fica assim:
+
+const lenis = new Lenis();
+// ... configurações do Lenis ...
+
+// Sincroniza atualização do ScrollTrigger com o evento de scroll do Lenis
+lenis.on('scroll', ScrollTrigger.update);
+
+// Usa o ticker do GSAP para rodar o RAF do Lenis em cada tick do GSAP
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000); // GSAP fornece o tempo em segundos, converter para ms
+});
+gsap.ticker.lagSmoothing(0);
+
+

@@ -26,7 +26,13 @@ const Header = () => {
   }
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-lg py-2' : 'bg-black/20 backdrop-blur-sm py-4'}`}>
+    <header 
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-lg py-2' : 'bg-black/20 backdrop-blur-sm py-4'
+      } ${
+        isHeaderVisible ? 'translate-y-0 opacity-100' : 'translate-y-[-100%] opacity-0'
+      }`}
+    >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center group">
           <div className="relative">
