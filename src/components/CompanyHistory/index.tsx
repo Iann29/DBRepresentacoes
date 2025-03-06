@@ -115,15 +115,13 @@ const CompanyHistory: React.FC = () => {
     <section 
       id="historia" 
       ref={sectionRef}
-      className="bg-gray-900"
+      className="bg-[#950300]"
     >
-      {/* Introdução com o card do fundador - container com altura extra para garantir mais tempo de visibilidade */}
-      <div className="relative h-[200vh] overflow-hidden">
-        <FounderCard />
-      </div>
+      {/* Introdução com o card do fundador */}
+      <FounderCard />
       
       {/* Título fixo no topo para a timeline */}
-      <div className="sticky top-0 left-0 w-full py-16 bg-gray-50 z-10">
+      <div className="sticky top-0 left-0 w-full py-16 bg-gray-50 z-10 mt-[50vh]">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -165,7 +163,7 @@ const CompanyHistory: React.FC = () => {
         ))}
         
         {/* Elemento final da timeline */}
-        <div className="h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-gray-900">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-[#950300]">
           <motion.div 
             className="text-center"
             initial={{ opacity: 0, scale: 0.9 }}

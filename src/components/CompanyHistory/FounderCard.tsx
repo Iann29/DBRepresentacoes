@@ -15,10 +15,10 @@ const FounderCard: React.FC = () => {
   const textY = useTransform(scrollYProgress, [0, 0.2, 0.9], [100, 0, -50]);
 
   return (
-    <div ref={containerRef} className="min-h-[150vh] flex items-center justify-center overflow-hidden relative py-32 sticky top-0">
+    <div ref={containerRef} className="min-h-screen flex items-center justify-center overflow-hidden relative py-32 sticky top-0">
       {/* Background com gradient dinâmico */}
       <motion.div 
-        className="absolute inset-0 bg-gradient-to-b from-gray-900 to-[#950300] z-0"
+        className="absolute inset-0 bg-gradient-to-b from-[#16213a] to-[#950300] z-0"
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.8 }}
@@ -54,7 +54,7 @@ const FounderCard: React.FC = () => {
               <div className="pb-[120%] relative overflow-hidden">
                 <img 
                   src="/equipe/deoclecioboff.webp" 
-                  alt="Deoclecio Piffer - Fundador" 
+                  alt="Deoclecio Boff - Fundador" 
                   className="absolute inset-0 w-full h-full object-cover object-center"
                 />
               </div>
@@ -105,7 +105,7 @@ const FounderCard: React.FC = () => {
               transition={{ duration: 0.7, delay: 0.2 }}
             >
               Deoclecio<br />
-              <span className="text-[#ff544f]">Piffer</span>
+              <span className="text-[#ff544f]">Boff</span>
             </motion.h2>
             
             <motion.div 
