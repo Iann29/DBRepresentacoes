@@ -467,7 +467,7 @@ const TeamPresentation = () => {
       </AnimatePresence>
       
       {/* Estilo global para animações */}
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes shine {
           0% {
             transform: rotate(45deg) translateY(100%);
@@ -476,7 +476,7 @@ const TeamPresentation = () => {
             transform: rotate(45deg) translateY(-100%);
           }
         }
-      `}</style>
+      `}} />
     </section>
   );
 };
