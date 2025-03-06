@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'unframer';
 
 const Divider: React.FC = () => {
   const dividerRef = useRef<HTMLDivElement>(null);

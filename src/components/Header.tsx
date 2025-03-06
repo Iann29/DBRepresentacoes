@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useHeader } from '../contexts/HeaderContext';
+import { SmoothScrollLink } from './ui/SmoothScroll';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,14 +50,15 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
           {['Início', 'Diferenciais', 'Equipe', 'Empresas', 'História', 'Contato'].map((item) => (
-            <a 
+            <SmoothScrollLink 
               key={item} 
-              href={`#${item.toLowerCase()}`}
+              to={`#${item.toLowerCase()}`}
               className={`${isScrolled ? 'text-gray-800' : 'text-white'} hover:text-[#db0500] relative group px-2 py-1`}
+              offset={-100}
             >
               {item}
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#db0500] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-            </a>
+            </SmoothScrollLink>
           ))}
         </nav>
         
@@ -81,16 +83,16 @@ const Header = () => {
         <div className="container mx-auto px-4 py-20">
           <nav className="flex flex-col space-y-8 items-center">
             {['Início', 'Diferenciais', 'Equipe', 'Empresas', 'História', 'Contato'].map((item, index) => (
-              <a 
+              <SmoothScrollLink 
                 key={item} 
-                href={`#${item.toLowerCase()}`}
+                to={`#${item.toLowerCase()}`}
                 className="text-2xl font-medium text-gray-800 hover:text-[#db0500] transition-colors relative group"
+                offset={-100}
                 onClick={() => setIsMenuOpen(false)}
-                style={{ transitionDelay: `${index * 50}ms` }}
               >
                 {item}
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#db0500] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-              </a>
+              </SmoothScrollLink>
             ))}
           </nav>
         </div>

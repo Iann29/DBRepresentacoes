@@ -5,14 +5,18 @@ import Differentials from './components/Differentials';
 import Divider from './components/Divider';
 import TeamPresentation from './components/TeamPresentation';
 import RepresentedCompanies from './components/RepresentedCompanies';
-import CompanyHistory from './components/CompanyHistory';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import { ArrowUp } from 'lucide-react';
 import { HeaderProvider } from './contexts/HeaderContext';
+import { LenisProvider } from './contexts/LenisContext';
+import { useSmoothScroll } from './components/ui/SmoothScroll';
+import '../framer/styles.css';
+import HistoryFramerComponent from '../framer/history';
 
-function App() {
+function AppContent() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const { scrollTo } = useSmoothScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,10 +32,7 @@ function App() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    scrollTo(0, { duration: 1.5 });
   };
 
   return (
@@ -46,7 +47,7 @@ function App() {
             <TeamPresentation />
           </div>
           <RepresentedCompanies />
-          <CompanyHistory />
+          <HistoryFramerComponent style={{ width: '100%' }} />
           <ContactForm />
         </main>
         <Footer />
@@ -63,6 +64,20 @@ function App() {
         </button>
       </div>
     </HeaderProvider>
+  );
+}
+
+function App() {
+  return (
+    <LenisProvider options={{
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1,
+    }}>
+      <AppContent />
+    </LenisProvider>
   );
 }
 
