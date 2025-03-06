@@ -34,13 +34,6 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ company, index }) => {
             />
           </div>
           
-          {/* Slogan */}
-          {company.slogan && (
-            <div className="mb-6 italic text-gray-600 text-center">
-              "{company.slogan}"
-            </div>
-          )}
-          
           {/* Botões de ação */}
           <div className="mt-auto space-y-3">
             {/* Website */}
