@@ -2,3 +2,4 @@
 2. Siga a identidade visual da DB (vermelho #db0500, cinza claro, branco).
 3. Respeite o padrão do código existente.
 4. Priorize componentes responsivos.
+5. Pense na estrutura de caminhos para funcionar utilizando diferentes domínios.

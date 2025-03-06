@@ -77,7 +77,7 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ company, index }) => {
 };
 
 interface CatalogSectionProps {
-  catalogList: Array<{ name: string; url: string }>;
+  catalogList: Array<{ name: string; url: string; external?: boolean }>;
 }
 
 const CatalogSection: React.FC<CatalogSectionProps> = ({ catalogList }) => {
@@ -93,12 +93,20 @@ const CatalogSection: React.FC<CatalogSectionProps> = ({ catalogList }) => {
           <a 
             key={idx}
             href={catalog.url} 
-            download
+            download={!catalog.external}
+            target={catalog.external ? "_blank" : undefined}
+            rel={catalog.external ? "noopener noreferrer" : undefined}
             className="flex items-center space-x-2 font-medium px-4 py-3 rounded-lg bg-[#db0500] text-white transition-all duration-300 hover:bg-[#a00300]"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
+            {catalog.external ? (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+            )}
             <span>{catalog.name}</span>
           </a>
         ))}
