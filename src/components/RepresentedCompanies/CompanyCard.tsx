@@ -41,10 +41,10 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ company, index }) => {
               href={company.website} 
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-full space-x-2 font-medium px-4 py-2.5 rounded-lg text-gray-700 border border-gray-300 transition-all duration-300 hover:bg-gray-50"
+              className="flex items-center justify-center w-full space-x-2 font-medium px-4 py-2.5 rounded-lg text-gray-700 border border-gray-300 transition-all duration-300 hover:border-[#db0500] hover:text-[#db0500] hover:shadow-inner transform hover:translate-x-1 relative overflow-hidden before:absolute before:inset-0 before:w-0 hover:before:w-full before:right-0 before:bg-[#db0500]/10 before:transition-all before:duration-300 before:z-0 before:rounded-md"
             >
-              <ExternalLink size={16} />
-              <span>Visitar o site</span>
+              <ExternalLink size={16} className="relative z-10" />
+              <span className="relative z-10">Visitar o site</span>
             </a>
           </div>
         </div>
@@ -89,7 +89,7 @@ const CatalogSection: React.FC<CatalogSectionProps> = ({ catalogList }) => {
             download={!catalog.external}
             target={catalog.external ? "_blank" : undefined}
             rel={catalog.external ? "noopener noreferrer" : undefined}
-            className="flex items-center space-x-2 font-medium px-4 py-3 rounded-lg bg-white text-gray-800 border border-gray-300 transition-all duration-300 hover:bg-gray-50"
+            className="flex items-center space-x-2 font-medium px-4 py-3 rounded-lg bg-white text-gray-800 border border-gray-300 transition-all duration-300 hover:bg-[#db0500] hover:text-white hover:border-[#db0500] hover:shadow-md transform hover:scale-[1.02]"
           >
             {catalog.external ? (
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
