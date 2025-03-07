@@ -1,5 +1,7 @@
 1. Speak in portugues brazilian.
-2. Siga a identidade visual da DB (vermelho #db0500, cinza claro, branco).
-3. Respeite o padrão do código existente.
-4. Priorize componentes responsivos.
-5. Pense na estrutura de caminhos para funcionar utilizando diferentes domínios.
+2. Faça alterações apenas se for explicitamente solicitado pelo Ian
+3. Siga a identidade visual da DB (vermelho #db0500, cinza claro, branco).
+4. Respeite o padrão do código existente.
+5. Priorize componentes responsivos.
+6. Pense na estrutura de caminhos para funcionar utilizando diferentes domínios.
+7. Utilizar o MCP do GITHUB apenas se for explicitamente solicitado pelo Ian

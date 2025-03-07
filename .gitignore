@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# MCP Screenshots
+mcp-screenshots/
+
+# Framer
+framer/
