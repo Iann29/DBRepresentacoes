@@ -110,19 +110,8 @@ const FounderCard: React.FC = () => {
             className="w-full md:w-1/2 md:pl-16 text-white text-center md:text-left"
             style={{ opacity: textOpacity, y: textY }}
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex justify-center md:justify-start"
-            >
-              <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-white/80 text-sm font-medium mb-2 md:mb-6">
-                Nosso Fundador
-              </div>
-            </motion.div>
-            
             <motion.h2 
-              className="text-3xl sm:text-5xl md:text-7xl font-bold mb-2 md:mb-6 leading-tight"
+              className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6 leading-tight"
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.7, delay: 0.2 }}

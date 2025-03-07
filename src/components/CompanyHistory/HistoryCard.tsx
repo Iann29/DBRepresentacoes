@@ -67,29 +67,6 @@ const HistoryCard: React.FC<HistoryCardProps> = ({ event, index, totalEvents }) 
                 transition={{ duration: 0.8, ease: "easeInOut" }}
               />
             </div>
-            
-            {/* Indicador de navegação em dispositivos móveis */}
-            {isMobile && (
-              <div className="p-3 bg-gray-50 flex justify-center items-center">
-                <div className="flex space-x-1">
-                  {[...Array(Math.min(5, totalEvents))].map((_, i) => {
-                    const showDot = 
-                      (index < 2 && i < 5) || 
-                      (index >= totalEvents - 2 && i >= Math.max(0, totalEvents - 5)) ||
-                      (i >= Math.max(0, index - 2) && i <= Math.min(totalEvents - 1, index + 2));
-                    
-                    return showDot ? (
-                      <div 
-                        key={i} 
-                        className={`h-2 w-2 rounded-full ${i === index ? 'bg-[#db0500]' : 'bg-gray-300'}`}
-                      />
-                    ) : i === Math.min(5, totalEvents) - 1 || i === 0 ? (
-                      <div key={i} className="h-2 w-2 rounded-full bg-gray-200" />
-                    ) : null;
-                  })}
-                </div>
-              </div>
-            )}
           </div>
         </motion.div>
       </div>
