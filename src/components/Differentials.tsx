@@ -17,7 +17,7 @@ const DifferentialItem: React.FC<DifferentialItemProps> = ({ icon, title, descri
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setTimeout(() => {
-              entry.target.classList.add('opacity-100', 'translate-y-0');
+              entry.target.classList.add('opacity-100', 'scale-100');
             }, delay);
             observer.unobserve(entry.target);
           }
@@ -40,7 +40,7 @@ const DifferentialItem: React.FC<DifferentialItemProps> = ({ icon, title, descri
   return (
     <div 
       ref={itemRef} 
-      className="bg-white rounded-xl shadow-lg p-6 transition-all duration-700 opacity-0 translate-y-10 hover:shadow-xl hover:-translate-y-1 group"
+      className="bg-white rounded-xl shadow-lg p-6 transition-all duration-700 opacity-0 scale-95 hover:shadow-xl hover:-translate-y-1 group"
     >
       <div className="relative mb-6 inline-block">
         <div className="absolute inset-0 bg-[#db0500]/10 rounded-full transform scale-0 group-hover:scale-125 transition-transform duration-300"></div>
@@ -65,11 +65,11 @@ const Differentials = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             if (headingRef.current) {
-              headingRef.current.classList.add('opacity-100', 'translate-y-0');
+              headingRef.current.classList.add('opacity-100', 'scale-100');
             }
             if (subheadingRef.current) {
               setTimeout(() => {
-                subheadingRef.current?.classList.add('opacity-100', 'translate-y-0');
+                subheadingRef.current?.classList.add('opacity-100', 'scale-100');
               }, 200);
             }
             observer.unobserve(entry.target);
@@ -129,13 +129,13 @@ const Differentials = () => {
         <div className="text-center mb-20">
           <h2 
             ref={headingRef}
-            className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 opacity-0 translate-y-10 transition-all duration-700"
+            className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 opacity-0 scale-95 transition-all duration-700"
           >
             Nossos <span className="text-gradient">Diferenciais</span>
           </h2>
           <p 
             ref={subheadingRef}
-            className="text-lg text-gray-700 max-w-3xl mx-auto opacity-0 translate-y-10 transition-all duration-700"
+            className="text-lg text-gray-700 max-w-3xl mx-auto opacity-0 scale-95 transition-all duration-700"
           >
             O que nos torna a escolha ideal para representar sua empresa no mercado.
           </p>
