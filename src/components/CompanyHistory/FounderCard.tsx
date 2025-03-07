@@ -131,16 +131,18 @@ const FounderCard: React.FC = () => {
               <span className="text-[#ff544f]">Boff</span>
             </motion.h2>
             
-            {/* Modificado para evitar quebra de linha durante a animação */}
+            {/* Modificado para layout vertical em mobile com texto centralizado e barra abaixo */}
             <div className="flex justify-center md:justify-start">
               <motion.div 
-                className="flex items-center mb-2 md:mb-8 overflow-hidden"
+                className="flex flex-col md:flex-row items-center md:items-center mb-2 md:mb-8 overflow-hidden"
                 initial={{ opacity: 0, width: 0 }}
                 animate={isInView ? { opacity: 1, width: "100%" } : { opacity: 0, width: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                <div className="h-px bg-[#db0500] w-6 md:w-12 mr-2 md:mr-4 flex-shrink-0"></div>
-                <span className="text-sm md:text-xl font-semibold text-white/80 whitespace-nowrap flex-shrink-0">Visionário & Empreendedor</span>
+                <span className="text-sm md:text-xl font-semibold text-white/80 whitespace-nowrap flex-shrink-0 mb-1 md:mb-0 md:mr-4">
+                  Visionário & Empreendedor
+                </span>
+                <div className="h-px bg-[#db0500] w-16 md:w-12 md:h-px flex-shrink-0"></div>
               </motion.div>
             </div>
             
