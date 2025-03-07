@@ -1,6 +1,7 @@
 export interface CatalogItem {
   name: string;
   url: string;
+  external?: boolean;
 }
 
 export interface CompanyData {
