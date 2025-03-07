@@ -326,7 +326,7 @@ const TeamPresentation = () => {
     {
       image: "/equipe/jenneffercruz.webp",
       name: "Jenneffer Cruz",
-      position: "Consultora Comercial",
+      position: "Comercial",
       region: "",
       email: "dbcomercial@deboff.com.br",
       phone: "(54) 99996-7120"
