@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { SmoothScrollLink } from './ui/SmoothScroll';
 
 const Footer = () => {
   const footerRef = useRef<HTMLElement>(null);
@@ -101,34 +102,34 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="#inicio" className="hover:text-[#db0500] transition-colors duration-300 flex items-center">
+                <SmoothScrollLink to="#inicio" className="hover:text-[#db0500] transition-colors duration-300 flex items-center">
                   <span className="w-2 h-2 bg-[#db0500] mr-3 rounded-full"></span>
                   Início
-                </a>
+                </SmoothScrollLink>
               </li>
               <li>
-                <a href="#sobre" className="hover:text-[#db0500] transition-colors duration-300 flex items-center">
+                <SmoothScrollLink to="#sobre" className="hover:text-[#db0500] transition-colors duration-300 flex items-center">
                   <span className="w-2 h-2 bg-[#db0500] mr-3 rounded-full"></span>
                   Sobre Nós
-                </a>
+                </SmoothScrollLink>
               </li>
               <li>
-                <a href="#diferenciais" className="hover:text-[#db0500] transition-colors duration-300 flex items-center">
+                <SmoothScrollLink to="#diferenciais" className="hover:text-[#db0500] transition-colors duration-300 flex items-center">
                   <span className="w-2 h-2 bg-[#db0500] mr-3 rounded-full"></span>
                   Diferenciais
-                </a>
+                </SmoothScrollLink>
               </li>
               <li>
-                <a href="#equipe" className="hover:text-[#db0500] transition-colors duration-300 flex items-center">
+                <SmoothScrollLink to="#equipe" className="hover:text-[#db0500] transition-colors duration-300 flex items-center">
                   <span className="w-2 h-2 bg-[#db0500] mr-3 rounded-full"></span>
                   Nossa Equipe
-                </a>
+                </SmoothScrollLink>
               </li>
               <li>
-                <a href="#contato" className="hover:text-[#db0500] transition-colors duration-300 flex items-center">
+                <SmoothScrollLink to="#contato" className="hover:text-[#db0500] transition-colors duration-300 flex items-center">
                   <span className="w-2 h-2 bg-[#db0500] mr-3 rounded-full"></span>
                   Contato
-                </a>
+                </SmoothScrollLink>
               </li>
             </ul>
           </div>
