@@ -341,7 +341,7 @@ const TeamPresentation = () => {
     {
       image: "/equipe/jenneffercruz.webp",
       name: "Jenneffer Cruz",
-      position: "Comercial",
+      position: "Consultora Comercial",
       region: "",
       email: "dbcomercial@deboff.com.br",
       phone: "(54) 99996-7120"
@@ -354,6 +354,14 @@ const TeamPresentation = () => {
       email: "contato@dbrepresentacoes.com.br",
       phone: "54 9 9996 7538",
       partnerCompany: "Häfele"
+    },
+    {
+      image: "/equipe/marthamoraes.webp",
+      name: "Martha Moraes",
+      position: "Comercial",
+      region: "",
+      email: "comercial@deboff.com.br",
+      phone: "54 99648 3905"
     }
   ];
 
