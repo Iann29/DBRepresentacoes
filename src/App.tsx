@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import CompanyPresentation from './components/CompanyPresentation';
+import CompanyVisionMission from './components/CompanyVisionMission';
 import Differentials from './components/Differentials';
 import Divider from './components/Divider';
 import TeamPresentation from './components/TeamPresentation';
@@ -41,6 +42,7 @@ function AppContent() {
         <Header />
         <main>
           <CompanyPresentation />
+          <CompanyVisionMission />
           <div className="relative">
             <Differentials />
             <Divider />
