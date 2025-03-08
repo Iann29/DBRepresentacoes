@@ -293,7 +293,7 @@ const TeamPresentation = () => {
   const teamMembers = [
     {
       image: "/equipe/deoclecioboff.webp",
-      name: "Deoclecio Boff",
+      name: "Deoclécio Boff",
       position: "Representante Comercial",
       region: "",
       email: "deocleciob@deboff.com.br",
@@ -374,7 +374,7 @@ const TeamPresentation = () => {
             </h2>
             
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Sob a liderança de Deoclecio Boff, nossa equipe de profissionais qualificados é o diferencial da DB Representações.
+              Sob a liderança de Deoclécio Boff, nossa equipe de profissionais qualificados é o diferencial da DB Representações.
             </p>
           </motion.div>
           

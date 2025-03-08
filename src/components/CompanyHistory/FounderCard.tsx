@@ -76,7 +76,7 @@ const FounderCard: React.FC = () => {
               <div className="pb-[80%] md:pb-[120%] relative overflow-hidden">
                 <img 
                   src="/equipe/deoclecioboff.webp" 
-                  alt="Deoclecio Boff - Fundador" 
+                  alt="Deoclécio Boff - Fundador" 
                   className="absolute inset-0 w-full h-full object-cover object-center"
                 />
               </div>
@@ -116,7 +116,7 @@ const FounderCard: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              Deoclecio<br />
+              Deoclécio<br />
               <span className="text-[#ff544f]">Boff</span>
             </motion.h2>
             
@@ -141,7 +141,7 @@ const FounderCard: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              Desde 1994, Deoclecio tem liderado com visão e determinação, transformando desafios em oportunidades e construindo relacionamentos duradouros. Sua jornada de dedicação e excelência moldou não apenas uma empresa, mas estabeleceu um legado de valores e compromisso com a qualidade.
+              Desde 1994, Deoclécio tem liderado com visão e determinação, transformando desafios em oportunidades e construindo relacionamentos duradouros. Sua jornada de dedicação e excelência moldou não apenas uma empresa, mas estabeleceu um legado de valores e compromisso com a qualidade.
             </motion.p>
             
             <div className="flex justify-center md:justify-start">
@@ -172,7 +172,7 @@ const FounderCard: React.FC = () => {
           animate={isInView ? { x: "-100%" } : { x: "100%" }}
           transition={{ duration: isMobile ? 15 : 20, repeat: Infinity, repeatType: "loop", ease: "linear" }}
         >
-          {[1994, 1995, 1998, 2002, 2007, 2012, 2015, 2020, 2025].map((year, i) => (
+          {[1997, 2002, 2003, 2012, 2015, 2020, 2025].map((year, i) => (
             <div key={i} className="text-4xl md:text-9xl font-bold text-white/10 whitespace-nowrap mx-4 md:mx-12">
               {year}
             </div>

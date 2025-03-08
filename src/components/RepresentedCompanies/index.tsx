@@ -14,7 +14,7 @@ const RepresentedCompanies: React.FC = () => {
         {/* Cabeçalho da seção */}
         <SectionHeader 
           title="Nossas Empresas Representadas"
-          subtitle="Somos o elo entre nossas representadas e seus consumidores. Desta forma, transformamos relacionamentos em negócios. Acesse aqui os catálogos de nossas representadas:"
+          subtitle="Construímos pontes sólidas entre fabricantes e consumidores, promovendo negócios duradouros baseados na confiança e qualidade. Conheça os parceiros que compõem nosso portfólio de excelência:"
         />
         
         {/* Lista unificada de empresas representadas */}
