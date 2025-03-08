@@ -10,6 +10,7 @@ interface TeamMemberProps {
   email: string;
   phone: string;
   isLeader?: boolean;
+  partnerCompany?: string;
 }
 
 // Componente de cartão com efeito 3D sutil
@@ -19,6 +20,7 @@ const TeamCard: React.FC<TeamMemberProps & { onClick: () => void, index: number 
   position, 
   region, 
   isLeader = false,
+  partnerCompany,
   onClick,
   index
 }) => {
@@ -116,6 +118,11 @@ const TeamCard: React.FC<TeamMemberProps & { onClick: () => void, index: number 
             <p className="text-[#db0500] font-medium text-sm">{position}</p>
             {region && <p className="text-gray-500 text-xs mt-1">{region}</p>}
             
+            {/* Exibindo empresa parceira exclusiva quando existir */}
+            {partnerCompany && (
+              <p className="text-gray-700 text-xs mt-1 font-medium">Exclusivo {partnerCompany}</p>
+            )}
+            
             {/* Botão "Ver detalhes" */}
             <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-4">
               <span className="inline-flex items-center text-sm font-medium text-white bg-[#db0500] hover:bg-[#b00400] px-3 py-1.5 rounded-md transition-colors shadow-md">
@@ -138,6 +145,7 @@ const TeamMemberModal: React.FC<TeamMemberProps & { onClose: () => void }> = ({
   region, 
   email,
   phone,
+  partnerCompany,
   onClose
 }) => {
   return (
@@ -223,6 +231,13 @@ const TeamMemberModal: React.FC<TeamMemberProps & { onClose: () => void }> = ({
                 </>
               )}
             </div>
+            
+            {/* Exibindo empresa parceira exclusiva quando existir */}
+            {partnerCompany && (
+              <div className="mt-1 inline-block bg-gray-100 px-2 py-1 rounded-md">
+                <span className="text-sm font-medium">Exclusivo {partnerCompany}</span>
+              </div>
+            )}
           </motion.div>
           
           {/* Linha separadora */}
@@ -330,6 +345,15 @@ const TeamPresentation = () => {
       region: "",
       email: "dbcomercial@deboff.com.br",
       phone: "(54) 99996-7120"
+    },
+    {
+      image: "/equipe/ademirpagnussat.webp",
+      name: "Ademir Pagnussat",
+      position: "Representante Parceiro",
+      region: "",
+      email: "contato@dbrepresentacoes.com.br",
+      phone: "54 9 9996 7538",
+      partnerCompany: "Häfele"
     }
   ];
 
@@ -432,6 +456,7 @@ const TeamPresentation = () => {
                 region={member.region}
                 email={member.email}
                 phone={member.phone}
+                partnerCompany={member.partnerCompany}
                 onClick={() => handleOpenModal(member)}
                 index={index + 1}
               />

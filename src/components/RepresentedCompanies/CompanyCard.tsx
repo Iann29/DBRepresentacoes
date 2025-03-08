@@ -26,7 +26,13 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ company, index }) => {
       <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-7 gap-6 md:gap-10">
         {/* Logo e informações principais */}
         <div className="md:col-span-2 flex flex-col">
-          <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-center mb-6 h-48">
+          <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-center mb-6 h-48 relative">
+            {/* Label "Desde [ano]" */}
+            {company.representedSince && (
+              <div className="absolute -top-3 -right-3 bg-[#db0500] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md transform rotate-3 border-2 border-white">
+                Desde {company.representedSince}
+              </div>
+            )}
             <img 
               src={company.logo} 
               alt={company.name} 
@@ -61,8 +67,10 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ company, index }) => {
             {company.longDescription}
           </p>
           
-          {/* Catálogos */}
-          <CatalogSection catalogList={company.catalogList} />
+          {/* Catálogos - exibidos apenas se showCatalogs não for explicitamente false */}
+          {company.showCatalogs !== false && (
+            <CatalogSection catalogList={company.catalogList} />
+          )}
         </div>
       </div>
     </motion.div>

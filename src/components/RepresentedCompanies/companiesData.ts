@@ -13,7 +13,8 @@ export const allCompanies: CompanyData[] = [
     website: 'https://www.zendesign.com.br/', // URL do site da empresa
     catalogList: [
       { name: 'Catálogos no Site Oficial', url: 'https://www.zendesign.com.br/catalogos', external: true }
-    ]
+    ],
+    representedSince: 2007
   },
   {
     name: 'Rometal',
@@ -26,7 +27,8 @@ export const allCompanies: CompanyData[] = [
     catalogList: [
       { name: 'Catálogo de Produtos', url: '/catalogos/rometal/catalogo_produtos.pdf' },
       { name: 'Portfólio Alumínio', url: '/catalogos/rometal/portfolio_aluminio.pdf' }
-    ]
+    ],
+    representedSince: 2008
   },
   {
     name: 'Häfele',
@@ -39,9 +41,24 @@ export const allCompanies: CompanyData[] = [
     catalogList: [
       { name: 'Catálogo Moveleiro', url: 'https://oneweb-prod.hafele.com/prod-q-rg70/web/WFS/Haefele-HBR-Site/pt_BR/-/EUR/Static-View/pdfcatalog/pt_BR/catalogs/index.php?catalog=OGH_FF2024', external: true },
       { name: 'Catálogo Arquitetura', url: 'https://oneweb-prod.hafele.com/prod-q-rg70/web/WFS/Haefele-HBR-Site/pt_BR/-/EUR/Static-View/pdfcatalog/pt_BR/catalogs/index.php?catalog=OGH_AH2024', external: true }
-    ]
+    ],
+    representedSince: 2011
   },
   // Demais empresas
+  {
+    name: 'Portábille',
+    logo: '/representadas/logoportabille.webp',
+    description: 'Uma das mais tradicionais marcas de componentes para móveis do Brasil, oferecendo produtos que combinam qualidade, sofisticação e detalhes exclusivos.',
+    longDescription: 'Fundada em Caxias do Sul, na serra gaúcha, a Portábille é reconhecida nacionalmente pela excelência em componentes para móveis. Especializada em perfis e vidros com acabamentos diferenciados, a empresa se destaca pela atenção aos detalhes e pelo compromisso com a qualidade. Seus produtos transformam móveis comuns em peças sofisticadas, criando ambientes que unem conforto, praticidade e elegância, conquistando a confiança dos clientes e o reconhecimento do mercado como referência em bom gosto.',
+    slogan: 'A diferença está nos detalhes',
+    catalogUrl: 'https://portabille.com.br/', // URL para o site já que não há catálogo
+    website: 'https://portabille.com.br/', // URL do site da empresa
+    catalogList: [
+      { name: 'Visite o Site Oficial', url: 'https://portabille.com.br/', external: true }
+    ],
+    showCatalogs: false,
+    representedSince: 2022
+  },
   {
     name: 'Grossl',
     logo: '/representadas/logogrossl.webp',
@@ -54,7 +71,8 @@ export const allCompanies: CompanyData[] = [
       { name: 'Catálogo de Produtos', url: '/catalogos/grossl/catalogo_produtos.pdf' },
       { name: 'Catálogo de Lixas', url: '/catalogos/grossl/catalogo_lixasgrossl.pdf' },
       { name: 'Catálogo Titebond', url: '/catalogos/grossl/catalogo_titebond.pdf' }
-    ]
+    ],
+    representedSince: 2020
   },
   {
     name: 'Guidini',
@@ -66,7 +84,8 @@ export const allCompanies: CompanyData[] = [
     website: 'https://guidinielectric.com.br/', // URL do site da empresa
     catalogList: [
       { name: 'Catálogo de Produtos', url: '/catalogos/guidini/catalogo_produtos.pdf' }
-    ]
+    ],
+    representedSince: 2020
   },
   {
     name: 'Rubinettos',
@@ -78,7 +97,8 @@ export const allCompanies: CompanyData[] = [
     website: 'https://www.rubinettos.com.br/', // URL do site da empresa
     catalogList: [
       { name: 'Catálogo Principal', url: '/catalogos/rubinettos/catalogo_principal.pdf' }
-    ]
+    ],
+    representedSince: 2023
   },
   {
     name: 'ComfortDoor',
@@ -90,6 +110,7 @@ export const allCompanies: CompanyData[] = [
     website: 'https://www.comfortdoor.com.br/', // URL do site da empresa
     catalogList: [
       { name: 'Catálogo Principal', url: '/catalogos/comfortdoor/catalogo_principal.pdf' }
-    ]
+    ],
+    representedSince: 2016
   }
 ];
