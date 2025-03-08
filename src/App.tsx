@@ -12,7 +12,7 @@ import { ArrowUp } from 'lucide-react';
 import { HeaderProvider } from './contexts/HeaderContext';
 import { LenisProvider } from './contexts/LenisContext';
 import { useSmoothScroll } from './components/ui/SmoothScroll';
-import '../framer/styles.css';
+import './styles/lenis.css';
 
 function AppContent() {
   const [showScrollTop, setShowScrollTop] = useState(false);
