@@ -123,12 +123,9 @@ const CompanyVisionMission: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="space-y-4"
               >
-                <div className="relative">
-                  <div className="absolute -inset-4 bg-white/5 backdrop-blur-sm rounded-xl"></div>
-                  <p className="relative text-white/90 text-base md:text-lg leading-relaxed z-10">
-                    Fundada em <span className="text-[#db0500] font-semibold">14/10/1997</span> no Planalto gaúcho, a DB representações idealiza o trabalho de profissional de vendas iniciado em Abril de 1994 como vendedor externo e mais tarde autônomo.
-                  </p>
-                </div>
+                <p className="text-white/90 text-base md:text-lg leading-relaxed">
+                  Fundada em <span className="text-[#db0500] font-semibold">14/10/1997</span> no Planalto gaúcho, a DB representações idealiza o trabalho de profissional de vendas iniciado em Abril de 1994 como vendedor externo e mais tarde autônomo.
+                </p>
                 
                 <div className="relative mt-4">
                   <p className="text-white/80 text-base md:text-lg leading-relaxed">
