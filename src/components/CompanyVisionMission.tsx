@@ -30,19 +30,12 @@ const CompanyVisionMission: React.FC = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative pt-20 pb-24 md:pt-28 md:pb-36 overflow-hidden bg-gradient-to-b from-[#030303] via-[#242424] to-gray-50"
+      className="relative pt-20 pb-24 md:pt-28 md:pb-32 overflow-hidden bg-[#030303]"
       id="sobre"
     >
-      {/* Fundo com padrão geométrico sutíl */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="h-full w-full" style={{ 
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23db0500' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}></div>
-      </div>
+      {/* Removido o padrão geométrico de fundo */}
       
-      {/* Círculos decorativos de fundo */}
-      <div className="absolute -left-1/4 top-1/4 w-1/2 h-1/2 rounded-full bg-gradient-to-r from-[#db0500]/10 to-transparent"></div>
-      <div className="absolute -right-1/4 bottom-1/4 w-1/2 h-1/2 rounded-full bg-gradient-to-l from-[#db0500]/10 to-transparent"></div>
+      {/* Removido os círculos decorativos de fundo */}
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
@@ -60,12 +53,13 @@ const CompanyVisionMission: React.FC = () => {
               transition={{ duration: 0.8, type: "spring", damping: 20 }}
               className="relative z-10"
             >
-              {/* Moldura elegante */}
-              <div className="absolute -inset-1 md:-inset-3 bg-gradient-to-tr from-[#db0500]/40 via-white/20 to-white/20 rounded-xl md:rounded-2xl blur-md"></div>
+              {/* Efeito de borda - restaurado */}
+              <div className="absolute -top-3 -left-3 md:-top-6 md:-left-6 w-full h-full border-2 border-[#db0500] rounded-lg transform rotate-2"></div>
+              <div className="absolute -bottom-3 -right-3 md:-bottom-6 md:-right-6 w-full h-full border-2 border-[#db0500] rounded-lg transform -rotate-2"></div>
               
               {/* Container da imagem */}
-              <div className="relative overflow-hidden rounded-lg shadow-2xl border-2 border-white/20">
-                {/* Overlay com efeito de gradiente */}
+              <div className="relative overflow-hidden rounded-lg shadow-2xl">
+                {/* Overlay com efeito de gradiente - restaurado */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#db0500]/20 to-transparent pointer-events-none z-10"></div>
                 
                 {/* Imagem */}
@@ -82,7 +76,7 @@ const CompanyVisionMission: React.FC = () => {
               </div>
             </motion.div>
             
-            {/* Efeito de brilho */}
+            {/* Efeito de brilho - restaurado com vermelho */}
             <motion.div 
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 rounded-full pointer-events-none z-0 opacity-50"
               animate={{
