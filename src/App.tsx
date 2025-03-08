@@ -5,6 +5,7 @@ import CompanyVisionMission from './components/CompanyVisionMission';
 import Differentials from './components/Differentials';
 import Divider from './components/Divider';
 import TeamPresentation from './components/TeamPresentation';
+import VisionMission from './components/VisionMission'; // Adicione esta linha
 import RepresentedCompanies from './components/RepresentedCompanies';
 import CompanyHistory from './components/CompanyHistory';
 import ContactForm from './components/ContactForm';
@@ -48,6 +49,7 @@ function AppContent() {
             <Divider />
             <TeamPresentation />
           </div>
+          <VisionMission /> {/* Adicione aqui entre TeamPresentation e RepresentedCompanies */}
           <RepresentedCompanies />
           <CompanyHistory />
           <ContactForm />

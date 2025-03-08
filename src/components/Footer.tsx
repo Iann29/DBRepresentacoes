@@ -55,7 +55,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-gray-900 text-white pt-16 pb-8 overflow-hidden">
+    <footer ref={footerRef} className="bg-[#272727] text-white pt-16 pb-8 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Contato */}
@@ -176,7 +176,7 @@ const Footer = () => {
               <span className="w-8 h-1 bg-[#db0500] mr-3"></span>
               Newsletter
             </h3>
-            <p className="mb-4 text-gray-400">
+            <p className="mb-4 text-gray-300">
               Inscreva-se para receber novidades e atualizações.
             </p>
             <form className="mb-4">
@@ -184,7 +184,7 @@ const Footer = () => {
                 <input 
                   type="email" 
                   placeholder="Seu e-mail" 
-                  className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#db0500] focus:border-transparent"
+                  className="bg-[#333333] border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#db0500] focus:border-transparent"
                 />
                 <button 
                   type="submit" 
@@ -199,7 +199,7 @@ const Footer = () => {
                 href="https://instagram.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#db0500] transition-colors duration-300"
+                className="w-10 h-10 rounded-full bg-[#333333] flex items-center justify-center hover:bg-[#db0500] transition-colors duration-300"
               >
                 <Instagram size={18} />
               </a>
@@ -207,7 +207,7 @@ const Footer = () => {
                 href="https://facebook.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#db0500] transition-colors duration-300"
+                className="w-10 h-10 rounded-full bg-[#333333] flex items-center justify-center hover:bg-[#db0500] transition-colors duration-300"
               >
                 <Facebook size={18} />
               </a>
@@ -215,7 +215,7 @@ const Footer = () => {
                 href="https://linkedin.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#db0500] transition-colors duration-300"
+                className="w-10 h-10 rounded-full bg-[#333333] flex items-center justify-center hover:bg-[#db0500] transition-colors duration-300"
               >
                 <Linkedin size={18} />
               </a>
@@ -223,7 +223,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-500">
+        <div className="border-t border-[#333333] pt-8 text-center text-gray-300">
           <p> {new Date().getFullYear()} DB Representação Comercial. Todos os direitos reservados.</p>
           <p className="mt-2 text-sm">
             Desenvolvido com <span className="text-[#db0500]">♥</span> por <a href="#" className="text-[#db0500] hover:underline">Amage</a>
