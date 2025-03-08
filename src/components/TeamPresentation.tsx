@@ -280,7 +280,7 @@ const TeamMemberModal: React.FC<TeamMemberProps & { onClose: () => void }> = ({
             </div>
           </motion.div>
           
-          {/* Botão de contato */}
+          {/* Botão de contato - Agora com WhatsApp */}
           <motion.div 
             className="mt-8"
             initial={{ opacity: 0, y: 20 }}
@@ -288,10 +288,12 @@ const TeamMemberModal: React.FC<TeamMemberProps & { onClose: () => void }> = ({
             transition={{ delay: 0.6 }}
           >
             <a 
-              href={`mailto:${email}`} 
+              href={`https://wa.me/55${phone.replace(/\D/g, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block w-full py-3 px-6 bg-gradient-to-r from-[#db0500] to-[#9e0400] text-white text-center rounded-lg font-medium hover:from-[#b00400] hover:to-[#800300] transition-all transform hover:scale-105 shadow-lg"
             >
-              Entrar em contato
+              Conversar no WhatsApp
             </a>
           </motion.div>
         </div>
@@ -336,7 +338,7 @@ const TeamPresentation = () => {
       position: "Comercial",
       region: "",
       email: "glaucia@dbrepresentacoes.com.br",
-      phone: "(54) 99999-5555"
+      phone: "54 93505-9377"
     },
     {
       image: "/equipe/jenneffercruz.webp",
