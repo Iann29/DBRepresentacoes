@@ -45,33 +45,17 @@ const VisionMission: React.FC = () => {
     <section 
       ref={containerRef}
       id="visao-missao" 
-      className="relative py-20 md:py-32 overflow-hidden bg-[#696969]"
+      className="relative py-20 md:py-32 overflow-hidden bg-[#8f8f8f]"
     >
       {/* Fundo com padrão geométrico sutilmente */}
-      <div className="absolute inset-0 opacity-10" style={{ 
+      <div className="absolute inset-0 opacity-10 backdrop-blur-sm" style={{ 
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23db0500' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
       }}></div>
       
+      {/* Elemento com blur para o background */}
+      <div className="absolute inset-0 bg-[#8f8f8f]/70 backdrop-blur-[2.5px]"></div>
+      
       <div className="container mx-auto px-4 relative z-10">
-        {/* Título da seção */}
-        <div className="text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: -20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold mb-4 text-white"
-          >
-            Nossos <span className="text-[#db0500]">Valores</span> Fundamentais
-          </motion.h2>
-          
-          <motion.div 
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="h-1 w-24 bg-[#db0500] rounded-full mx-auto mb-6"
-          ></motion.div>
-        </div>
-        
         {/* Cards de Visão e Missão */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 max-w-5xl mx-auto">
           {/* Card da Visão */}

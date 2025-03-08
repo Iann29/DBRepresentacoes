@@ -173,8 +173,8 @@ const CompanyHistory: React.FC = () => {
           />
         ))}
         
-        {/* Elemento final da timeline */}
-        <div className="min-h-[90vh] md:min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-[#950300]">
+        {/* Elemento final da timeline - com fundo cinza claro (bg-gray-50) para combinar com os cards */}
+        <div className="min-h-[90vh] md:min-h-screen flex items-center justify-center bg-gray-50">
           <motion.div 
             className="text-center px-4 sm:px-0"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -182,8 +182,8 @@ const CompanyHistory: React.FC = () => {
             transition={{ duration: 1 }}
             viewport={{ once: false, amount: 0.6 }}
           >
-            <h3 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4 md:mb-6">O Futuro</h3>
-            <p className="text-lg sm:text-xl text-white/70 max-w-md sm:max-w-xl mx-auto">
+            <h3 className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-800 mb-4 md:mb-6">O Futuro</h3>
+            <p className="text-lg sm:text-xl text-gray-700 max-w-md sm:max-w-xl mx-auto">
               Continuamos escrevendo nossa história, sempre com o compromisso de excelência que marcou nossos primeiros 30 anos.
             </p>
             <motion.div 
@@ -193,7 +193,7 @@ const CompanyHistory: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: false, amount: 0.6 }}
             >
-              <div className="bg-[#db0500] w-16 h-16 md:w-20 md:h-20 rounded-full mx-auto flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300">
+              <div className="bg-[#db0500] w-16 h-16 md:w-20 md:h-20 rounded-full mx-auto flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300 shadow-md">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
@@ -203,14 +203,14 @@ const CompanyHistory: React.FC = () => {
             {/* Link de retorno ao topo para mobile */}
             {isMobile && (
               <motion.div
-                className="mt-8 text-white/60 flex justify-center items-center text-sm"
+                className="mt-8 text-gray-500 flex justify-center items-center text-sm"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1 }}
               >
                 <a 
                   href="#historia" 
-                  className="flex items-center hover:text-white/90 transition-colors"
+                  className="flex items-center hover:text-[#db0500] transition-colors"
                   onClick={(e) => {
                     e.preventDefault();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
