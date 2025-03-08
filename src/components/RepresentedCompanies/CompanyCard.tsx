@@ -27,9 +27,9 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ company, index }) => {
         {/* Logo e informações principais */}
         <div className="md:col-span-2 flex flex-col">
           <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-center mb-6 h-48 relative">
-            {/* Label "Desde [ano]" */}
+            {/* Label "Desde [ano]" - sem rotação */}
             {company.representedSince && (
-              <div className="absolute -top-3 -right-3 bg-[#db0500] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md transform rotate-3 border-2 border-white">
+              <div className="absolute -top-3 -right-3 bg-[#db0500] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md border-2 border-white">
                 Desde {company.representedSince}
               </div>
             )}
