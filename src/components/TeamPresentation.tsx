@@ -261,7 +261,7 @@ const TeamMemberModal: React.FC<TeamMemberProps & { onClose: () => void }> = ({
               </div>
               <div>
                 <p className="text-sm text-gray-500">Telefone</p>
-                <a href={`tel:${phone}`} className="text-gray-800 hover:text-[#db0500] transition-colors">
+                <a href={`https://wa.me/55${phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-[#db0500] transition-colors">
                   {phone}
                 </a>
               </div>
@@ -322,7 +322,7 @@ const TeamPresentation = () => {
       position: "Comercial",
       region: "",
       email: "Gabriel.boff@deboff.com.br",
-      phone: "(54) 99682-7120"
+      phone: "54 9 9682 7120"
     },
     {
       image: "/equipe/eduardobiazotto.webp",
@@ -330,15 +330,15 @@ const TeamPresentation = () => {
       position: "Comercial",
       region: "",
       email: "vendas@deboff.com.br",
-      phone: "(54) 9 9990 7120"
+      phone: "54 9 9990 7120"
     },
     {
       image: "/equipe/glauciascariot.webp",
       name: "Glaucia Scariot",
       position: "Comercial",
       region: "",
-      email: "glaucia@dbrepresentacoes.com.br",
-      phone: "54 93505-9377"
+      email: "dbatendimento@deboff.com.br",
+      phone: "54 9 35059377"
     },
     {
       image: "/equipe/jenneffercruz.webp",
@@ -346,7 +346,7 @@ const TeamPresentation = () => {
       position: "Consultora Comercial",
       region: "",
       email: "dbcomercial@deboff.com.br",
-      phone: "(54) 99996-7120"
+      phone: "54 9 9996 7120"
     },
     {
       image: "/equipe/ademirpagnussat.webp",
