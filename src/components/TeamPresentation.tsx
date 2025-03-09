@@ -329,8 +329,8 @@ const TeamPresentation = () => {
       name: "Eduardo Biazotto",
       position: "Comercial",
       region: "",
-      email: "eduardo@dbrepresentacoes.com.br",
-      phone: "(54) 99999-6666"
+      email: "vendas@deboff.com.br",
+      phone: "(54) 9 9990 7120"
     },
     {
       image: "/equipe/glauciascariot.webp",
