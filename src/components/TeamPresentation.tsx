@@ -118,9 +118,11 @@ const TeamCard: React.FC<TeamMemberProps & { onClick: () => void, index: number 
             <p className="text-[#db0500] font-medium text-sm">{position}</p>
             {region && <p className="text-gray-500 text-xs mt-1">{region}</p>}
             
-            {/* Exibindo empresa parceira exclusiva quando existir */}
+            {/* Exibindo empresa parceira exclusiva quando existir - AQUI ESTÁ A MODIFICAÇÃO */}
             {partnerCompany && (
-              <p className="text-gray-700 text-xs mt-1 font-medium">Exclusivo {partnerCompany}</p>
+              <p className="text-gray-700 text-xs mt-1 font-medium inline-block bg-gray-100 px-2 py-0.5 rounded-md">
+                Exclusivo {partnerCompany}
+              </p>
             )}
             
             {/* Botão "Ver detalhes" */}
@@ -261,7 +263,7 @@ const TeamMemberModal: React.FC<TeamMemberProps & { onClose: () => void }> = ({
               </div>
               <div>
                 <p className="text-sm text-gray-500">Telefone</p>
-                <a href={`https://wa.me/55${phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-[#db0500] transition-colors">
+                <a href={`tel:${phone}`} className="text-gray-800 hover:text-[#db0500] transition-colors">
                   {phone}
                 </a>
               </div>
@@ -457,20 +459,27 @@ const TeamPresentation = () => {
           
           {/* Grid de membros da equipe */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
-            {teamMembers.slice(1).map((member, index) => (
-              <TeamCard
-                key={index + 1}
-                image={member.image}
-                name={member.name}
-                position={member.position}
-                region={member.region}
-                email={member.email}
-                phone={member.phone}
-                partnerCompany={member.partnerCompany}
-                onClick={() => handleOpenModal(member)}
-                index={index + 1}
-              />
-            ))}
+            {teamMembers.slice(1).map((member, index) => {
+              // Verificar se é o Ademir Pagnussat
+              const isAdemir = member.name === "Ademir Pagnussat";
+              
+              return (
+                <TeamCard
+                  key={index + 1}
+                  image={member.image}
+                  name={member.name}
+                  position={member.position}
+                  region={member.region}
+                  email={member.email}
+                  phone={member.phone}
+                  // Não passamos partnerCompany para o Ademir na visualização do card
+                  // mas mantemos essa info para ser usada no modal quando aberto
+                  partnerCompany={isAdemir ? undefined : member.partnerCompany}
+                  onClick={() => handleOpenModal(member)}
+                  index={index + 1}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
