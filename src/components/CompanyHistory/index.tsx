@@ -9,6 +9,11 @@ import FounderCard from './FounderCard';
 // Eventos da linha do tempo da empresa
 const timelineEvents: TimelineEvent[] = [
   {
+    year: 1994,
+    title: "Início da Jornada",
+    description: "Deoclécio Boff inicia sua jornada profissional como vendedor CLT, estabelecendo as bases do que viria a se tornar a DB Representações."
+  },
+  {
     year: 1997,
     title: "Constituição",
     description: "Constituída a DB Representações, na Cidade de Passo Fundo."
