@@ -53,7 +53,7 @@ const Footer = () => {
       >
         <div className="flex flex-col lg:flex-row gap-10 mb-10">
           {/* Logo and description */}
-          <div className="lg:w-1/3">
+          <div className="lg:w-1/4">
             <div className="mb-5">
               <img 
                 src="/logodb.webp" 
@@ -82,7 +82,7 @@ const Footer = () => {
           </div>
           
           {/* Quick Links */}
-          <div className="lg:w-1/3 mt-8 lg:mt-0">
+          <div className="lg:w-1/4 mt-8 lg:mt-0">
             <h3 className="text-xl font-semibold mb-5 relative">
               <span className="absolute left-0 -bottom-2 w-12 h-1 bg-[#db0500]"></span>
               Links Rápidos
@@ -102,8 +102,30 @@ const Footer = () => {
             </ul>
           </div>
           
+          {/* Setores */}
+          <div className="lg:w-1/4 mt-8 lg:mt-0">
+            <h3 className="text-xl font-semibold mb-5 relative">
+              <span className="absolute left-0 -bottom-2 w-12 h-1 bg-[#db0500]"></span>
+              Setores
+            </h3>
+            <ul className="space-y-3 mt-6">
+              <li>
+                <div className="flex items-center text-gray-300 group">
+                  <ArrowRight className="w-4 h-4 mr-2 text-[#db0500]" />
+                  <span className="group-hover:text-[#db0500] transition-colors duration-300">Construção moveleira</span>
+                </div>
+              </li>
+              <li>
+                <div className="flex items-center text-gray-300 group">
+                  <ArrowRight className="w-4 h-4 mr-2 text-[#db0500]" />
+                  <span className="group-hover:text-[#db0500] transition-colors duration-300">Construção civil</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          
           {/* Contact Info */}
-          <div className="lg:w-1/3 mt-8 lg:mt-0">
+          <div className="lg:w-1/4 mt-8 lg:mt-0">
             <h3 className="text-xl font-semibold mb-5 relative">
               <span className="absolute left-0 -bottom-2 w-12 h-1 bg-[#db0500]"></span>
               Contato
@@ -111,7 +133,14 @@ const Footer = () => {
             <ul className="space-y-4 mt-6">
               <li className="flex items-start group">
                 <MapPin className="w-5 h-5 text-[#db0500] mt-1 mr-3 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-gray-300">Rua Álvaro Domingues, 129<br />Bairro Nazaré - Tapejara/RS</span>
+                <a 
+                  href="https://maps.google.com/?q=Rua+Manoel+Teixeira+450+Tapejara+RS" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-300 hover:text-[#db0500] transition-colors duration-300"
+                >
+                  Rua Manoel Teixeira 450<br />Bairro Nazaré, Tapejara/RS
+                </a>
               </li>
               <li className="flex items-center group">
                 <Phone className="w-5 h-5 text-[#db0500] mr-3 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />

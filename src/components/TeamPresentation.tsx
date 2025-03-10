@@ -353,7 +353,7 @@ const TeamPresentation = () => {
       name: "Ademir Pagnussat",
       position: "Representante Parceiro",
       region: "",
-      email: "contato@dbrepresentacoes.com.br",
+      email: "dbatendimento@deboff.com.br",
       phone: "54 9 9996 7538",
       partnerCompany: "Häfele"
     },
